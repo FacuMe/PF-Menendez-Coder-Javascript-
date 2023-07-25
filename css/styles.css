@@ -7,7 +7,7 @@
 
    .................................
 */
-/*RESET HTML, BOOTSTRAP & AOS STYLES*/
+/*RESET HTML, BOOTSTRAP STYLES*/
 * {
     margin: 0;
     padding: 0;
@@ -34,36 +34,62 @@ ul {
     margin: 0;
 }
 
-.aos-init[data-aos][data-aos].aos-animate {
-    transform: unset;
+/* GRID */
+body {
+  display: grid;
+  grid-template-areas: "nav" "header" "main" "footer";
+  grid-template-rows: repeat(4, auto);
+  grid-template-columns: auto;
+}
+body nav {
+  grid-area: nav;
+}
+body header {
+  grid-area: header;
+}
+body main {
+  grid-area: main;
+}
+body footer {
+  grid-area: footer;
 }
   
+/* .................................
+
+            HEADER STYLES
+
+   .................................
+*/
+
+header {
+  background-image: url('../img/bg1.jpg');
+}
 
 
+/* .................................
+
+            SECTIONS STYLES 
+
+   .................................
+*/
 
 section {
-    margin: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    padding: 20px;
-  }
-  
-  h1, h2 {
-    color: #c0392b;
-  }
-  
-  #inicio {
-    background-color: #f8f8f8;
-  }
-  
-  #nuestros-productos {
-    background-color: #f8f8f8;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-  }
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #c0392b;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+
