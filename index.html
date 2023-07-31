@@ -8,9 +8,11 @@
     <meta name="keywords" content="....">
     <title>Home - Soil Wines</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="#">
+    <link rel="icon" type="image/x-icon" href="./img/brand-logo2.png">
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- styles.css -->
@@ -19,73 +21,211 @@
 
 <body>
 
+  <div class="pt-1 pb-1 banner">
+    <p>Envíos gratis en todas las órdenes superiores a $6.000</p>
+  </div>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top flex-column">
+    <div class="d-flex align-items-center gap-3">
+      <div class="d-flex flex-column align-items-center justify-content-center ">
+        <a class="navbar-brand m-0" href="#"><img src="./img/brand-logo2.png" alt="Logo" width="60" class="d-inline-block align-text-top"></a>
+        <a class="navbar-brand m-0" href="#">Soil Wines</a>
+      </div>
+      <div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-sm-5 pe-3">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Degustaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Vinoteca</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Nosotros</a>
+        </li>
+      </ul>
+  </nav>
+
     <header>
       <div id="inicio" class="inicio">
-        <h1>Bienvenido a Vinoteca Soil Wines!</h1>
-        <p>Somos apasionados amantes del vino y queremos compartir contigo la experiencia más exquisita enológica. En WineLand, encontrarás una amplia selección de vinos de diferentes regiones del mundo, cuidadosamente elegidos por nuestros expertos sommeliers. Explora nuestra colección, participa en catas emocionantes y descubre nuevas joyas vinícolas. ¡Te invitamos a sumergirte en el fascinante mundo del vino con nosotros!</p>
+        <div class="col-4 offset-7">
+          <h1>Tu vinoteca</h1>
+          <p>para ese</p>
+          <p>momento especial</p>
+        </div>
       </div>
     </header>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Soil Wines</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                  <a class="nav-link" href="#inicio">Inicio</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#productos">Productos</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#nosotros">Nosotros</a>
-              </li>
-          </ul>
-      </div>
-    </nav>
-
     <main>
-      
-        <section id="descripcion">
-          <h2>Descripción</h2>
-          <p>En Soil Wines, nos enorgullecemos de ofrecer una experiencia vinícola única y satisfactoria. Nuestra misión es proporcionar vinos excepcionales y de alta calidad, brindando a nuestros clientes la oportunidad de descubrir sabores y aromas que cautivan los sentidos. Trabajamos estrechamente con viñedos de renombre en todo el mundo para ofrecerte una cuidada selección de vinos tintos, blancos, rosados y espumosos. Además, nuestros sommeliers expertos están siempre dispuestos a asesorarte y guiarte en tu elección. Ya seas un conocedor o un aficionado, en WineLand encontrarás algo especial para ti.</p>
-        </section>
 
-        <section id="nuestros-productos">
-          <h2>Nuestros Productos</h2>
-          <p>Contamos con una extensa gama de vinos de alta calidad y exclusivos. Explora nuestra selección y encuentra tu próximo vino favorito.</p>
-        </section>
+      <section class="productos mt-5">
+        <h2>Productos</h2>
+        <p>Contamos con una extensa gama de vinos exclusivos y de alta calidad. Explorá nuestra selección y encontrá tu próximo vino favorito.</p>
+        <div class="mt-5 row justify-content-center align-items-center gap-3">
+          <div class="col-3 category catbg-1">
+            <p>Tintos</p>
+          </div>
+          <div class="col-3 category catbg-2">
+            <p>Blancos</p>
+          </div>
+          <div class="col-3 category catbg-3 flex-column">
+            <p>Rosas</p>
+            <p>y</p>
+            <p>Espumantes</p>
+          </div>
+        </div>
+        <div class="row row-cols-4 justify-content-between align-items-center products__block">
+          <div class="col-3 d-flex justify-content-center products__block__item">
+            <div class="products__block__item__box">
+              <div class="products__block__item__box__image-container">
+                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
+              </div>
+              <p class="products__block__item__box__name">D.V. Catena Cabernet Franc</p>
+              <p class="products__block__item__box__title">Tinto</p>
+              <p class="products__block__item__box__price">$400</p>           
+              <div>
+                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+              </div>  
+            </div>
+          </div>
+          <div class="col-3 d-flex justify-content-center products__block__item">
+            <div class="products__block__item__box">
+              <div class="products__block__item__box__image-container">
+                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
+              </div>
+              <p class="products__block__item__box__name">D.V. Catena Cabernet Franc</p>
+              <p class="products__block__item__box__title">Blanco</p>
+              <p class="products__block__item__box__price">$400</p>           
+              <div>
+                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+              </div>  
+            </div>
+          </div>
+          <div class="col-3 d-flex justify-content-center products__block__item">
+            <div class="products__block__item__box">
+              <div class="products__block__item__box__image-container">
+                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
+              </div>
+              <p class="products__block__item__box__name">D.V. Catena Cabernet Franc</p>
+              <p class="products__block__item__box__title">Rosa</p>
+              <p class="products__block__item__box__price">$400</p>           
+              <div>
+                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+              </div>  
+            </div>
+          </div>
+          <div class="col-3 d-flex justify-content-center products__block__item">
+            <div class="products__block__item__box">
+              <div class="products__block__item__box__image-container">
+                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
+              </div>
+              <p class="products__block__item__box__name">D.V. Catena Cabernet Franc</p>
+              <p class="products__block__item__box__title">Tinto</p>
+              <p class="products__block__item__box__price">$400</p>           
+              <div>
+                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+              </div>  
+            </div>
+          </div>
+          <div class="col-3 d-flex justify-content-center products__block__item">
+            <div class="products__block__item__box">
+              <div class="products__block__item__box__image-container">
+                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
+              </div>
+              <p class="products__block__item__box__name">D.V. Catena Cabernet Franc</p>
+              <p class="products__block__item__box__title">Espumante</p>
+              <p class="products__block__item__box__price">$400</p>           
+              <div>
+                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+              </div>  
+            </div>
+          </div>
+          <div class="col-3 d-flex justify-content-center products__block__item">
+            <div class="products__block__item__box">
+              <div class="products__block__item__box__image-container">
+                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
+              </div>
+              <p class="products__block__item__box__name">D.V. Catena Cabernet Franc</p>
+              <p class="products__block__item__box__title">Espumante</p>
+              <p class="products__block__item__box__price">$400</p>           
+              <div>
+                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+              </div>  
+            </div>
+          </div>
+          <div class="col-3 d-flex justify-content-center products__block__item">
+            <div class="products__block__item__box">
+              <div class="products__block__item__box__image-container">
+                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
+              </div>
+              <p class="products__block__item__box__name">D.V. Catena Cabernet Franc</p>
+              <p class="products__block__item__box__title">Espumante</p>
+              <p class="products__block__item__box__price">$400</p>           
+              <div>
+                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+              </div>  
+            </div>
+          </div>
+          <div class="col-3 d-flex justify-content-center products__block__item">
+            <div class="products__block__item__box">
+              <div class="products__block__item__box__image-container">
+                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
+              </div>
+              <p class="products__block__item__box__name">D.V. Catena Cabernet Franc</p>
+              <p class="products__block__item__box__title">Espumante</p>
+              <p class="products__block__item__box__price">$400</p>           
+              <div>
+                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <button type="button" class="btn btn-primary products__all_products_btn">Ver todos los productos</button>
+          </div>
+        </div>
+      </section>
 
-        <section id="productos-populares">
-          <h2>Productos Populares</h2>
-          <p>Aquí te presentamos una selección de nuestros vinos más populares y aclamados por nuestros clientes. Estas botellas han sido elogiadas por su calidad excepcional y sus perfiles de sabor distintivos. Desde los audaces tintos hasta los elegantes blancos, estos vinos reflejan lo mejor de cada región vinícola. Descubre por qué estos productos son tan apreciados y qué los hace tan especiales.</p>
-        </section>
+      <!-- <section id="descripcion">
+        <h2>Soil Wines</h2>
+        <p>En Soil Wines, nos enorgullecemos de ofrecer una experiencia vinícola única y satisfactoria. Nuestra misión es proporcionar vinos excepcionales y de alta calidad, brindando a nuestros clientes la oportunidad de descubrir sabores y aromas que cautivan los sentidos. Trabajamos estrechamente con viñedos de renombre en todo el mundo para ofrecerte una cuidada selección de vinos tintos, blancos, rosados y espumosos. Además, nuestros sommeliers expertos están siempre dispuestos a asesorarte y guiarte en tu elección. Ya seas un conocedor o un aficionado, en WineLand encontrarás algo especial para ti.</p>
+      </section>
 
-        <section id="ultimos-ingresos">
-          <h2>Últimos Ingresos</h2>
-          <p>En WineLand, siempre estamos en busca de nuevas y emocionantes adiciones a nuestra colección. Esta sección muestra los últimos vinos que hemos incorporado a nuestro catálogo. Mantente actualizado con nuestras novedades y sé uno de los primeros en probar las nuevas joyas vinícolas que hemos descubierto. Estamos constantemente en busca de tesoros escondidos y ediciones limitadas para sorprenderte con sabores únicos.</p>
-        </section>
+      <section id="degustaciones">
+        <h2>Degustaciones</h2>
+        <p>En Soil Wines, organizamos apasionantes eventos de degustación para que puedas disfrutar de una experiencia sensorial única. Nuestro experto sommelier te guiará a través de diferentes variedades de uvas, regiones vinícolas y técnicas de maridaje. Descubre cómo los sabores se entrelazan y se complementan en cada sorbo, mientras te sumerges en la cultura y la historia del vino. Nuestras degustaciones son una oportunidad perfecta para ampliar tus conocimientos y disfrutar de momentos memorables.</p>
+      </section>
 
-        <section id="degustaciones">
-          <h2>Degustaciones</h2>
-          <p>En Soil Wines, organizamos apasionantes eventos de degustación para que puedas disfrutar de una experiencia sensorial única. Nuestro experto sommelier te guiará a través de diferentes variedades de uvas, regiones vinícolas y técnicas de maridaje. Descubre cómo los sabores se entrelazan y se complementan en cada sorbo, mientras te sumerges en la cultura y la historia del vino. Nuestras degustaciones son una oportunidad perfecta para ampliar tus conocimientos y disfrutar de momentos memorables.</p>
-        </section>
+      <section id="vinoteca">
+        <h2>Nuestra Vinoteca</h2>
+        <p>Disfruta de un recorrido por nuestra vinoteca, en el corazón de Haedo. Aquí, nuestras botellas descansan en condiciones óptimas, esperando ser descubiertas. Desde los viñedos más antiguos hasta las añadas más recientes, nuestro espacio alberga un tesoro de experiencias enológicas. Te invitamos a sumergirte en este ambiente fascinante.</p>
+      </section>
 
-        <section id="nuestra-vinoteca">
-          <h2>Nuestra Vinoteca</h2>
-          <p>Disfruta de un recorrido por nuestra vinoteca, en el corazón de Haedo. Aquí, nuestras botellas descansan en condiciones óptimas, esperando ser descubiertas. Desde los viñedos más antiguos hasta las añadas más recientes, nuestro espacio alberga un tesoro de experiencias enológicas. Te invitamos a sumergirte en este ambiente fascinante.</p>
-        </section>
+      <section id="nosotros">
+        <h2>Nosotros</h2>
+        <p>Somos apasionados amantes del vino y queremos compartir contigo la experiencia más exquisita enológica. En Soil Wines, encontrarás una amplia selección de vinos de diferentes regiones del mundo, cuidadosamente elegidos por nuestros expertos sommeliers. Explora nuestra colección, participa en catas emocionantes y descubre nuevas joyas vinícolas. ¡Te invitamos a sumergirte en el fascinante mundo del vino con nosotros!</p>
+      </section> -->
           
     </main>
 
-    <footer>
+    <!-- <footer>
         <p>FOOTER</p>
-    </footer>
+    </footer> -->
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
