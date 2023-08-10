@@ -1,8 +1,6 @@
 /* IMPORT FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Joan&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap');
 
 /* .................................
@@ -20,7 +18,6 @@
 }
 
 body {
-    /* background-color: #f8f5f5; */
     min-height: 100vh;
 }
 
@@ -45,13 +42,6 @@ ul {
    .................................
 */
 
-header {
-  background-image: url('../img/wineimage1.jpg');
-  background-size: cover;
-  background-position: center bottom;
-  height: 100vh;
-}
-
 .banner {
   text-align: center;
   font-size: 14px;
@@ -61,32 +51,70 @@ header {
 }
 
 .navbar {
-  opacity: 1;
-  transition: opacity 0.3s; 
   font-size: 13px;
   text-transform: uppercase;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
 }
 
-.navbar-brand {
+@media screen and (min-width: 992px) {
+  .nav_container {
+    flex-direction: column;
+  }
+}
+
+.brand-container {
+  flex-direction: column;
+}
+
+.brand {
   font-family: 'Playfair Display', serif;
   font-size: 28px;
   font-weight: 600;
   text-transform: uppercase;
+  transition: font-size 0.4s ease;
 }
 
-.navbar-scrolled {
-  opacity: 0.95;
+.brand-logo {
+  width:60px;
+  transition: width 0.4s ease;
+}
+
+.navbar-scrolled-logo {
+  width: 40px;
+}
+
+.navbar-scrolled-brand {
+  font-size: 20px;
+}
+
+.navbar-scrolled-brand-container {
+  flex-direction: row;
+  gap: 1vh;
+}
+
+@media screen and (max-width: 992px) {
+  .brand {
+    font-size: 20px;
+  }
+  .brand-logo {
+    width:40px;
+  }
+}
+
+header {
+  background-image: url('../img/wineimage1.jpg');
+  background-size: cover;
+  background-position: center bottom;
 }
 
 .inicio {
   display: flex;
   align-items: center;
   color: #ffffff;
-  height: 100vh;
+  height: 73vh;
 }
 
 .inicio h1 {
-  font-size: 7vh;
   text-transform: uppercase;
   font-family: 'Noto Serif Display', serif;
   font-weight: 600;
@@ -94,8 +122,17 @@ header {
 
 .inicio p {
   font-family: 'Noto Serif Display', serif;
-  font-size: 5.5vh;
   text-transform: uppercase;
+}
+
+@media screen and (min-width: 992px) {
+  .inicio h1 {
+    font-size: 7vh;
+  }
+  
+  .inicio p {
+    font-size: 5.5vh;
+  }
 }
 
 /* .................................
@@ -247,4 +284,74 @@ section {
 .products__all_products_btn:hover {
   background-color: #790f29;
   border: none;
+}
+
+
+/* .................................
+
+            FOOTER STYLES 
+
+   .................................
+*/
+
+footer{
+  background-color: #790f29;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+footer h4 {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 2vh;
+}
+
+.medios_pago {
+  width: 15vw;
+}
+
+.data_fiscal {
+  width: 3.5vw;
+}
+
+.copyright_banner {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.copyright_banner a {
+  text-decoration: none;
+  color: #111111;
+  font-weight: 600;
+}
+
+.footer__media_icon {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.footer__media_icon:hover {
+  color: #979090;
+}
+
+.footer__nav {
+  list-style: none;
+}
+
+.footer__nav__item {
+  text-decoration: none;
+  color:#ffffff;
+  transition: all 0.3s ease;
+}
+
+.footer__nav__item:hover {
+  color: #979090;
 }
