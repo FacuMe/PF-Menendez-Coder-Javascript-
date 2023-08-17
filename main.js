@@ -4,12 +4,12 @@ const brand = document.querySelector('.brand');
 const brandContainer = document.querySelector('.brand-container');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
+    if (window.scrollY > 10 && window.innerWidth > 992) {
         brandLogo.classList.add('navbar-scrolled-logo');
         brand.classList.add('navbar-scrolled-brand');
         brandContainer.classList.add('navbar-scrolled-brand-container');
     } 
-    else if (window.scrollY <= 10) {
+    else if (window.scrollY <= 10 || window.innerWidth < 992) {
         brandLogo.classList.remove('navbar-scrolled-logo');
         brand.classList.remove('navbar-scrolled-brand');
         brandContainer.classList.remove('navbar-scrolled-brand-container');

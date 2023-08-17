@@ -60,31 +60,34 @@ ul {
   .nav_container {
     flex-direction: column;
   }
-}
-
-.brand-container {
-  flex-direction: column;
+  .brand-container {
+    flex-direction: column;
+  }
 }
 
 .brand {
   font-family: 'Playfair Display', serif;
-  font-size: 28px;
+  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
   transition: font-size 0.4s ease;
 }
 
+.brand-container {
+  gap: 1vh;
+}
+
 .brand-logo {
-  width:60px;
+  width:30px;
   transition: width 0.4s ease;
 }
 
 .navbar-scrolled-logo {
-  width: 40px;
+  width: 40px !important;
 }
 
 .navbar-scrolled-brand {
-  font-size: 20px;
+  font-size: 20px !important;
 }
 
 .navbar-scrolled-brand-container {
@@ -92,12 +95,29 @@ ul {
   gap: 1vh;
 }
 
-@media screen and (max-width: 992px) {
+.fa-shopping-cart, .fa-bars {
+  font-size: 18px;
+  border: none;
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+@media screen and (min-width: 992px) {
   .brand {
-    font-size: 20px;
+    font-size: 28px;
   }
   .brand-logo {
-    width:40px;
+    width: 60px;
+  }
+  .fa-shopping-cart, .fa-bars {
+    font-size: 25px;
   }
 }
 
@@ -172,7 +192,8 @@ section {
 .category {
   background-size: cover;
   color: #ffffff;
-  height: 50vh;
+  height: 45vh;
+  width: 45vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -195,11 +216,11 @@ section {
   background-image: url('../img/category2.png');
 }
 
-
-.products__block {
-  margin: 10vh 10vh 3vh 10vh;
-  padding-right: 10vh;
-  padding-left: 10vh;
+@media screen and (min-width: 992px) {
+  .category {
+    height: 50vh;
+    width: 50vh;
+  }
 }
 
 .products__block__item {
@@ -303,17 +324,21 @@ footer{
 
 footer h4 {
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
   padding-bottom: 2vh;
 }
 
+footer p, footer li {
+  font-size: 10px;
+}
+
 .medios_pago {
-  width: 15vw;
+  width: 70vw;
 }
 
 .data_fiscal {
-  width: 3.5vw;
+  width: 30vw;
 }
 
 .copyright_banner {
@@ -354,4 +379,23 @@ footer h4 {
 
 .footer__nav__item:hover {
   color: #979090;
+}
+
+@media screen and (min-width: 576px) {
+  footer h4 {
+    font-size: 16px;
+  }
+  footer p, footer li {
+    font-size: 14px;
+  }
+  .copyright_banner p {
+    font-size: 10px;
+  }
+  .medios_pago {
+    width: 15vw;
+  }
+  
+  .data_fiscal {
+    width: 5.5vw;
+  }
 }
