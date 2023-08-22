@@ -50,16 +50,16 @@
             <a class="nav-link active" aria-current="page" href="#">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Degustaciones</a>
+            <a class="nav-link active" href="#degustaciones">Degustaciones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Productos</a>
+            <a class="nav-link active" href="#productos">Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Vinoteca</a>
+            <a class="nav-link active" href="#vinoteca">Vinoteca</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Nosotros</a>
+            <a class="nav-link active" href="#nosotros">Nosotros</a>
           </li>
         </ul>
       </div>
@@ -99,7 +99,7 @@
 
     <main>
 
-      <section class="container-fluid productos mt-5 mb-5">
+      <section id="productos" class="container-fluid productos mt-5 mb-5">
         <h2>Productos</h2>
         <p>Contamos con una extensa gama de vinos exclusivos y de alta calidad. Explorá nuestra selección y encontrá tu próximo vino favorito.</p>
         <div class="mt-5 row justify-content-center align-items-center gap-3 mb-5">
@@ -115,7 +115,7 @@
             <p>Espumantes</p>
           </div>
         </div>
-        <div class="row row-cols-2 row-cols-sm-4 justify-content-between align-items-center m-sm-4">
+        <div class="row row-cols-2 row-cols-sm-4 justify-content-between align-items-center m-sm-5 ps-lg-5 pe-lg-5">
           <div class="col-6 col-sm-3 d-flex justify-content-center products__block__item">
             <div class="products__block__item__box">
               <div class="products__block__item__box__image-container">
@@ -125,7 +125,7 @@
               <p class="products__block__item__box__title">Tinto</p>
               <p class="products__block__item__box__price">$400</p>           
               <div>
-                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
               </div>  
             </div>
           </div>
@@ -138,7 +138,7 @@
               <p class="products__block__item__box__title">Blanco</p>
               <p class="products__block__item__box__price">$400</p>           
               <div>
-                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
               </div>  
             </div>
           </div>
@@ -151,7 +151,7 @@
               <p class="products__block__item__box__title">Rosa</p>
               <p class="products__block__item__box__price">$400</p>           
               <div>
-                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
               </div>  
             </div>
           </div>
@@ -164,7 +164,7 @@
               <p class="products__block__item__box__title">Tinto</p>
               <p class="products__block__item__box__price">$400</p>           
               <div>
-                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
               </div>  
             </div>
           </div>
@@ -177,7 +177,7 @@
               <p class="products__block__item__box__title">Tinto</p>
               <p class="products__block__item__box__price">$400</p>           
               <div>
-                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
               </div>  
             </div>
           </div>
@@ -190,7 +190,7 @@
               <p class="products__block__item__box__title">Blanco</p>
               <p class="products__block__item__box__price">$400</p>           
               <div>
-                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
               </div>  
             </div>
           </div>
@@ -203,7 +203,7 @@
               <p class="products__block__item__box__title">Rosa</p>
               <p class="products__block__item__box__price">$400</p>           
               <div>
-                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
               </div>  
             </div>
           </div>
@@ -216,42 +216,122 @@
               <p class="products__block__item__box__title">Tinto</p>
               <p class="products__block__item__box__price">$400</p>           
               <div>
-                  <button type="button" class="btn btn-primary products__block__item__box__btn">Agregar al carrito</button>       
+                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
               </div>  
             </div>
           </div>
         </div>
         <div class="row">
           <div>
-            <button type="button" class="btn btn-primary products__all_products_btn">Ver todos los productos</button>
+            <button type="button" class="btn btn-dark products__all_products_btn">Ver todos los productos</button>
           </div>
         </div>
         <div class="row mt-3">
           <div>
-            <button type="button" id="boton-calcular-envio" class="btn btn-primary products__all_products_btn">Calcular costo de envío</button>
+            <button type="button" id="boton-calcular-envio" class="btn btn-dark products__all_products_btn">Calcular costo de envío</button>
           </div>
         </div>
       </section>
 
-      <!-- <section id="descripcion">
-        <h2>Barrel Wines</h2>
-        <p>En Barrel Wines, nos enorgullecemos de ofrecer una experiencia vinícola única y satisfactoria. Nuestra misión es proporcionar vinos excepcionales y de alta calidad, brindando a nuestros clientes la oportunidad de descubrir sabores y aromas que cautivan los sentidos. Trabajamos estrechamente con viñedos de renombre en todo el mundo para ofrecerte una cuidada selección de vinos tintos, blancos, rosados y espumosos. Además, nuestros sommeliers expertos están siempre dispuestos a asesorarte y guiarte en tu elección. Ya seas un conocedor o un aficionado, en WineLand encontrarás algo especial para ti.</p>
+      <section id="degustaciones" class="container-fluid tasting mb-3 mt-5 pt-3">
+        <h2 class="tasting-title pt-3">Degustaciones</h2>
+        <p class="tasting-subtitle">En Barrel Wines, organizamos apasionantes eventos de degustación para que puedas disfrutar de una experiencia única.</p>
+        <div class="d-flex justify-content-center pt-4">
+          <div class="row d-flex justify-content-center tasting-container mt-4">
+            <div class="col-lg-10 d-flex flex-column">
+              <div class="col-lg-10 offset-lg-1">
+                <h3>Próximas degustaciones</h3>
+                  <div class="tasting-cards">
+                    <div class="tasting-card-top-items d-flex justify-content-between">
+                      <div class="col-xl-8 pt-2">
+                        <h5>Durigutti - Wine Tasting</h5>
+                        <p>
+                          <small class="text-muted">18/11/2023 - 21:30hs.</small>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <div class="align-self-center">
+                          <img class="tasting-card-pic img-fluid" src="./img/wineimage2.png" alt="foto de vinos">
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-3" style="text-align: justify;">
+                      <small>Maravillate con una gama de aromas y sabores que solo los vinos Durigutti pueden ofrecer. En la degustación probaremos: Malbec Reserva, Cabernet Sauvignon Gran Reserva, Torrontés, y Blend de Tintas.</small>
+                    </p>
+                    <p class="mt-2"><small>¡Reservas al Whatsapp!</small></p>
+                  </div>
+                  <div class="tasting-cards mt-3">
+                    <div class="tasting-card-top-items d-flex justify-content-between">
+                      <div class="col-xl-8 pt-2">
+                        <h5>El Enemigo - Wine Tasting</h5>
+                        <p>
+                          <small class="text-muted">30/11/2023 - 21:30hs.</small>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <div class="align-self-center">
+                          <img class="tasting-card-pic img-fluid" src="./img/degustacion.jpg" alt="foto de vinos">
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-3" style="text-align: justify;">
+                      <small>Sumérgete en un mundo de sabor con nuestra emocionante degustación de vinos de Bodega El Enemigo. En la degustación probaremos: Malbec, Cabernet Franc, Chardonnay, Gran Enemigo.</small>
+                    </p>
+                    <p class="mt-2"><small>¡Reservas al Whatsapp!</small></p>
+                  </div>
+              </div>
+            </div>
+            <!-- <div class="col-lg-5 p-0 tasting-bg-img">
+              <div class="col-lg-5 offset-lg-1">
+                <p class="tasting-description pt-3 pb-3">Nuestro sommelier te guiará a través de diferentes variedades de uvas, regiones vinícolas y técnicas de maridaje. Nuestras degustaciones son una oportunidad perfecta para ampliar tus conocimientos y disfrutar de momentos memorables.</p>
+              </div>
+            </div> -->
+          </div>
+        </div>
       </section>
 
-      <section id="degustaciones">
-        <h2>Degustaciones</h2>
-        <p>En Barrel Wines, organizamos apasionantes eventos de degustación para que puedas disfrutar de una experiencia sensorial única. Nuestro experto sommelier te guiará a través de diferentes variedades de uvas, regiones vinícolas y técnicas de maridaje. Descubre cómo los sabores se entrelazan y se complementan en cada sorbo, mientras te sumerges en la cultura y la historia del vino. Nuestras degustaciones son una oportunidad perfecta para ampliar tus conocimientos y disfrutar de momentos memorables.</p>
+      <section id="vinoteca" class="container-fluid">
+        <h2 class="winery-title pt-5 pb-5">Vinoteca</h2>
+        <div class="row winery pt-4 pb-3">
+          <div class="winery-overlay"></div>
+          <div class="col-lg-6">
+            <p class="winery-description">Disfruta de un recorrido por nuestra vinoteca, en el corazón de Haedo. Aquí, nuestras botellas descansan en condiciones óptimas, esperando ser descubiertas. Desde los viñedos más antiguos hasta las añadas más recientes, nuestro espacio alberga un tesoro de experiencias enológicas. Te invitamos a sumergirte en este ambiente fascinante.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="vinoteca">
-        <h2>Nuestra Vinoteca</h2>
-        <p>Disfruta de un recorrido por nuestra vinoteca, en el corazón de Haedo. Aquí, nuestras botellas descansan en condiciones óptimas, esperando ser descubiertas. Desde los viñedos más antiguos hasta las añadas más recientes, nuestro espacio alberga un tesoro de experiencias enológicas. Te invitamos a sumergirte en este ambiente fascinante.</p>
-      </section>
+      <section id="nosotros" class="container-fluid mb-5">
+        <h2 class="about-title pt-5 pb-5">Nosotros</h2>
+        <div class="d-flex justify-content-center">
+          <div class="row d-flex justify-content-center about">
+            <div class="col-lg-6 p-0">
+              <img src="./img/bottle.jpg" class="img-fluid about-img" alt="botella de vino">
+            </div>
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+              <div class="col-lg-8 offset-lg-2">
+                <div class="d-flex align-items-center pt-3 pb-4">
+                  <img src="./img/logofinal-nobg.png" alt="Logo" class="about-brand-logo">
+                  <p class="about-brand" href="#">Barrel Wines</p>
+                </div>
+                <p class="about-text pb-4">En Barrel Wines, nos enorgullecemos de ofrecer una experiencia única y satisfactoria. Nuestra misión es proporcionar vinos excepcionales y de alta calidad, brindando a nuestros clientes la oportunidad de descubrir sabores y aromas que cautivan los sentidos. Trabajamos estrechamente con viñedos de renombre en todo el mundo para ofrecerte una cuidada selección de vinos tintos, blancos, rosados y espumosos. Nuestros sommelier experto está siempre dispuesto a asesorarte y guiarte en tu elección.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <section id="nosotros">
-        <h2>Nosotros</h2>
-        <p>Somos apasionados amantes del vino y queremos compartir contigo la experiencia más exquisita enológica. En Barrel Wines, encontrarás una amplia selección de vinos de diferentes regiones del mundo, cuidadosamente elegidos por nuestros expertos sommeliers. Explora nuestra colección, participa en catas emocionantes y descubre nuevas joyas vinícolas. ¡Te invitamos a sumergirte en el fascinante mundo del vino con nosotros!</p>
-      </section> -->
+        <div class="row justify-content-center gap-4 mt-5 pt-5 pb-5 about-extra-content">
+          <div class="col-10 col-sm-4 order-sm-2 d-flex justify-content-center align-items-center">
+              <div class="col-10 about-extra-content-img-wrapper">
+                  <img src="./img/final6.jpg" class="img-fluid about-extra-content-img" alt="...">
+              </div>
+          </div>
+          <div class="col-10 col-sm-4 order-sm-1 d-flex flex-column">
+              <h3 class="mt-3 about-extra-content-description"> 
+                Somos apasionados amantes del vino y queremos compartir contigo la experiencia enológica más exquisita. En Barrel Wines, encontrarás una amplia selección de vinos de diferentes regiones del mundo, cuidadosamente elegidos por nuestros expertos sommeliers. Explora nuestra colección, participa en catas emocionantes y descubre nuevas joyas vinícolas. ¡Te invitamos a sumergirte en el fascinante mundo del vino con nosotros!
+              </h3>
+          </div>
+      </div>
+      </section>
           
     </main>
 
@@ -261,10 +341,10 @@
           <h4>Navegación</h4>
           <ul class="footer__nav">
             <li><a href="#" class="footer__nav__item">Inicio</a></li>
-            <li><a href="#" class="footer__nav__item">Degustaciones</a></li>
-            <li><a href="#" class="footer__nav__item">Productos</a></li>
-            <li><a href="#" class="footer__nav__item">Vinoteca</a></li>
-            <li><a href="#" class="footer__nav__item">Nosotros</a></li>
+            <li class="pt-1"><a href="#degustaciones" class="footer__nav__item">Degustaciones</a></li>
+            <li class="pt-1"><a href="#productos" class="footer__nav__item">Productos</a></li>
+            <li class="pt-1"><a href="#vinoteca" class="footer__nav__item">Vinoteca</a></li>
+            <li class="pt-1"><a href="#nosotros" class="footer__nav__item">Nosotros</a></li>
           </ul>
         </div>
         <div class="col-12 col-sm-3 ps-sm-5">
@@ -309,7 +389,7 @@
     </footer>
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <!-- Main js -->
     <script src="./main.js"></script>
 </body>

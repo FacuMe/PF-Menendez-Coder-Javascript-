@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 /* .................................
 
@@ -216,19 +217,12 @@ section {
   background-image: url('../img/category2.png');
 }
 
-@media screen and (min-width: 992px) {
-  .category {
-    height: 50vh;
-    width: 50vh;
-  }
-}
-
 .products__block__item {
   text-align: center;
 }
 .products__block__item__box {
   width: 15rem;
-  height: 23rem;
+  height: 20rem;
   text-align: center;
   background-color: #fff;
   background: #fff;
@@ -240,8 +234,8 @@ section {
   justify-content: space-around;
 }
 .products__block__item__box__name {
-  margin-top: 3%;
-  margin-bottom: 8px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 3%;
   font-size: 1.25rem;
   font-weight: 500;
@@ -258,11 +252,12 @@ section {
   font-weight: bold;
   letter-spacing: 2px;
   font-size: 16px;
+  padding-top: 1rem;
 }
 .products__block__item__box__btn {
   font-size: 11px;
-  margin-top: 15px;
-  margin-bottom: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 3%;
   background-color: #ab2143;
   border: none;
@@ -307,6 +302,236 @@ section {
   border: none;
 }
 
+@media screen and (min-width: 992px) {
+  .category {
+    height: 50vh;
+    width: 50vh;
+  }
+  .products__block__item__box {
+    height: 21rem;
+  }
+}
+
+/* ..................
+      TASTINGS
+   ..................
+*/
+
+.tasting {
+  padding: 0 5vw;
+}
+
+.tasting-title {
+  font-family: 'Noto Serif Display', serif;
+  text-transform: uppercase;
+  padding-bottom: 1vh;
+  font-size: 26px;
+  text-align: center;
+}
+
+.tasting-subtitle {
+  text-transform: uppercase;
+  font-size: 13px;
+  text-align: center;
+}
+
+.tasting-description {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  line-height: 26px;
+  font-size: 12px;
+  color: white;
+}
+
+.tasting-bg-img {
+  background-image: url('../img/headerbg.jpg');
+  background-size: cover;
+}
+
+.tasting h3 {
+  font-family: 'Noto Serif Display', serif;
+  padding-bottom: 1vh;
+  font-size: 22px;
+  text-align: center;
+}
+
+.tasting-cards{
+  text-align: center;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  padding: 14px 36px 18px 36px;
+}
+
+.tasting-cards:hover{
+  transform: scale(1.0025);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.tasting-cards h5 {
+  color: #790f29;
+  font-weight: 600;
+}
+
+.tasting-card-pic {
+  height: 70px;
+  width: 70px;
+  object-fit:contain;
+  border-radius: 10%;
+}
+
+.tasting-card-top-items{
+  flex-direction: column-reverse;
+}
+
+@media screen and (min-width: 992px) {
+  .tasting-container {
+    width: 75vw;
+  }
+  .tasting-title {
+    font-size: 36px;
+  }
+  .tasting-card-top-items{
+    flex-direction: row-reverse;
+  }
+  .tasting-card-pic{
+    height: 80px;
+    width: 80px;
+}
+}
+
+/* ..................
+      WINERY
+   ..................
+*/
+
+.winery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url('../img/wineshop1.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  height: 75vh;
+}
+
+.winery-overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #202020;
+  opacity: 0.75;
+}
+
+.winery-title {
+  font-family: 'Noto Serif Display', serif;
+  text-transform: uppercase;
+  padding-bottom: 1vh;
+  font-size: 36px;
+  text-align: center;
+}
+
+.winery-description {
+  color:white;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  line-height: 26px;
+  font-size: 18px;
+  font-style: italic;
+  text-align: justify;
+  padding: 4.5rem 0;
+}
+
+@media screen and (min-width: 992px) {
+  .winery-description {
+    line-height: 36px;
+  }
+}
+
+/* ..................
+        ABOULT US
+   ..................
+*/
+
+.about {
+  background-color: #f6f6f6;
+  width: 85vw;
+}
+
+.about-title {
+  font-family: 'Noto Serif Display', serif;
+  text-transform: uppercase;
+  padding-bottom: 1vh;
+  font-size: 36px;
+  text-align: center;
+}
+
+.about-img {
+  height: 60vh;
+  object-fit: cover;
+}
+
+.about-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding-left: 0.5vw;
+  padding-bottom: 0.3vh;
+}
+
+.about-brand-logo {
+  width: 35px;
+}
+
+.about-text {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  line-height: 26px;
+  font-size: 14px;
+  color: #5f5f5f;
+}
+
+.about-extra-content-img-wrapper {
+  position: relative;
+  display: block;
+  max-width: 100%;
+}
+.about-extra-content-img-wrapper::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #790f29;
+}
+
+.about-extra-content-img {
+  width: 30rem;
+}
+
+.about-extra-content-description {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  line-height: 26px;
+  font-size: 14px;
+  color: #5f5f5f;
+}
+
+@media screen and (min-width: 992px) {
+  .about-extra-content-description, .about-text {
+    text-align: justify;
+  }
+}
 
 /* .................................
 
