@@ -2,19 +2,49 @@
     {
       "nombre": "Vino Tinto Reserva",
       "tipo": "Tinto",
-      "precio": "$20",
+      "precio": "$2000",
       "imagen": "./img/product1.jpg"
     },
     {
       "nombre": "Vino Blanco Premium",
       "tipo": "Blanco",
-      "precio": "$18",
+      "precio": "$1800",
       "imagen": "./img/product1.jpg"
     },
     {
       "nombre": "Vino Rosado Elegante",
       "tipo": "Rosado",
-      "precio": "$15",
+      "precio": "$1500",
+      "imagen": "./img/product1.jpg"
+    },
+    {
+      "nombre": "Vino Rosado Elegante",
+      "tipo": "Rosado",
+      "precio": "$1500",
+      "imagen": "./img/product1.jpg"
+    },
+    {
+      "nombre": "Vino Rosado Elegante",
+      "tipo": "Rosado",
+      "precio": "$1500",
+      "imagen": "./img/product1.jpg"
+    },
+    {
+      "nombre": "Vino Rosado Elegante",
+      "tipo": "Rosado",
+      "precio": "$1500",
+      "imagen": "./img/product1.jpg"
+    },
+    {
+      "nombre": "Vino Rosado Elegante",
+      "tipo": "Rosado",
+      "precio": "$1500",
+      "imagen": "./img/product1.jpg"
+    },
+    {
+      "nombre": "Vino Rosado Elegante",
+      "tipo": "Rosado",
+      "precio": "$1500",
       "imagen": "./img/product1.jpg"
     }
 ]

@@ -340,7 +340,8 @@ section {
   font-style: normal;
   line-height: 26px;
   font-size: 12px;
-  color: white;
+  color:#5f5f5f;
+  text-align: justify;
 }
 
 .tasting-bg-img {
@@ -444,8 +445,8 @@ section {
   line-height: 26px;
   font-size: 18px;
   font-style: italic;
-  text-align: justify;
   padding: 4.5rem 0;
+  text-align: justify;
 }
 
 @media screen and (min-width: 992px) {
@@ -473,7 +474,7 @@ section {
 }
 
 .about-img {
-  height: 60vh;
+  height: 30vh;
   object-fit: cover;
 }
 
@@ -530,6 +531,9 @@ section {
 @media screen and (min-width: 992px) {
   .about-extra-content-description, .about-text {
     text-align: justify;
+  }
+  .about-img {
+    height: 60vh;
   }
 }
 

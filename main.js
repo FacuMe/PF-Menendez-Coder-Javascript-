@@ -74,58 +74,67 @@ botonCalcular.addEventListener("click", calcularCostoEnvio);
 
 
 
-//Carga de productos en página principal
+//Carga y filtro de productos 
+let listaDeProductos = [];
 document.addEventListener('DOMContentLoaded', () => {
     
     fetch('products.json')
-      .then(response => response.json())
-      .then(data => {
-        const vinosContainer = document.getElementById('vinos-container');
+        .then(response => response.json())
+        .then(data => {
+            listaDeProductos = data;
+            mostrarTodosLosProductos(listaDeProductos);
+        })
+    .catch(error => console.error('Error al cargar los vinos:', error));
+});
+
+function mostrarTodosLosProductos(productos) {
+    const productosContainer = document.getElementById('productos-container');
   
-        data.forEach(vino => {
-            const vinoCard = document.createElement('div');
-            vinoCard.classList.add('col-6', 'col-sm-3', 'd-flex', 'justify-content-center', 'products__block__item');
-  
-            const vinoBox = document.createElement('div');
-            vinoBox.classList.add('products__block__item__box');
-  
-            const imageContainer = document.createElement('div');
-            imageContainer.classList.add('products__block__item__box__image-container');
-            const image = document.createElement('img');
-            image.src = vino.imagen; // Agrega la ruta de la imagen desde el JSON
-            image.classList.add('products__block__item__box__image-container__img');
-            image.alt = vino.nombre;
-  
-            const name = document.createElement('p');
-            name.classList.add('products__block__item__box__name');
-            name.textContent = vino.nombre;
-  
-            const title = document.createElement('p');
-            title.classList.add('products__block__item__box__title');
-            title.textContent = vino.tipo;
-  
-            const price = document.createElement('p');
-            price.classList.add('products__block__item__box__price');
-            price.textContent = vino.precio;
-  
-            const buttonContainer = document.createElement('div');
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.classList.add('btn', 'btn-dark', 'products__block__item__box__btn');
-            button.textContent = 'Agregar al carrito';
-  
-            // Estructura de anidamiento de elementos
-            imageContainer.appendChild(image);
-            vinoBox.appendChild(imageContainer);
-            vinoBox.appendChild(name);
-            vinoBox.appendChild(title);
-            vinoBox.appendChild(price);
-            buttonContainer.appendChild(button);
-            vinoBox.appendChild(buttonContainer);
-            vinoCard.appendChild(vinoBox);
-  
-            vinosContainer.appendChild(vinoCard);
-        });
-      })
-      .catch(error => console.error('Error al cargar los vinos:', error));
-  });
+            productos.forEach(producto => {
+                const productoCard = document.createElement('div');
+                productoCard.classList.add('col-6', 'col-sm-3', 'd-flex', 'justify-content-center', 'products__block__item');
+    
+                const productoBox = document.createElement('div');
+                productoBox.classList.add('products__block__item__box');
+    
+                const imageContainer = document.createElement('div');
+                imageContainer.classList.add('products__block__item__box__image-container');
+                const image = document.createElement('img');
+                image.src = producto.imagen; 
+                image.classList.add('products__block__item__box__image-container__img');
+                image.alt = producto.nombre;
+    
+                const name = document.createElement('p');
+                name.classList.add('products__block__item__box__name');
+                name.textContent = producto.nombre;
+    
+                const title = document.createElement('p');
+                title.classList.add('products__block__item__box__title');
+                title.textContent = producto.tipo;
+    
+                const price = document.createElement('p');
+                price.classList.add('products__block__item__box__price');
+                price.textContent = producto.precio;
+    
+                const buttonContainer = document.createElement('div');
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.classList.add('btn', 'btn-dark', 'products__block__item__box__btn');
+                button.textContent = 'Agregar al carrito';
+    
+                imageContainer.appendChild(image);
+                productoBox.appendChild(imageContainer);
+                productoBox.appendChild(name);
+                productoBox.appendChild(title);
+                productoBox.appendChild(price);
+                buttonContainer.appendChild(button);
+                productoBox.appendChild(buttonContainer);
+                productoCard.appendChild(productoBox);
+                productosContainer.appendChild(productoCard);
+            });
+}
+
+function filtrarPorTipo(listaDeProductos){
+    let productosFiltradosPorTipo = listaDeProductos.filter(producto => producto.tipo === "Tinto");
+    return productosFiltradosPorTipo;
+}
