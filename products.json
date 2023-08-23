@@ -1,0 +1,20 @@
+[
+    {
+      "nombre": "Vino Tinto Reserva",
+      "tipo": "Tinto",
+      "precio": "$20",
+      "imagen": "./img/product1.jpg"
+    },
+    {
+      "nombre": "Vino Blanco Premium",
+      "tipo": "Blanco",
+      "precio": "$18",
+      "imagen": "./img/product1.jpg"
+    },
+    {
+      "nombre": "Vino Rosado Elegante",
+      "tipo": "Rosado",
+      "precio": "$15",
+      "imagen": "./img/product1.jpg"
+    }
+]
