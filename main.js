@@ -88,8 +88,6 @@ function filtrarPorTipo(listaDeProductos){
 function calcularCostoEnvio() {
     let codigoPostal;
     let costoEnvio;
-    let envioExpress;
-    let costoFinal;
     
     while (isNaN(codigoPostal) || codigoPostal < 1000 || codigoPostal > 2000) {
         codigoPostal = Number(prompt("Por favor, ingresa tu código postal:"));
@@ -111,9 +109,9 @@ function calcularCostoEnvio() {
         costoEnvio = 800;
     }
 
-    alert("El costo de envío es $" + costoEnvio + ".");
-    envioExpress = calcularEnvioExpress(); 
-    costoFinalEnvio = costoEnvio + envioExpress;
+    alert("El costo de envío para tu zona es $" + costoEnvio + ".");
+    let envioExpress = calcularEnvioExpress(); 
+    let costoFinalEnvio = costoEnvio + envioExpress;
     return costoFinalEnvio;
 }
 
@@ -135,26 +133,26 @@ function calcularEnvioExpress () {
 
 //Simular carrito (SEGUNDA PREENTREGA)
 class Producto{
-    constructor(id, nombre, tipo, precio, imagen, stock, cantidad){
+    constructor(id, nombre, tipo, precio, imagen, stock, cantidadEnCarrito){
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
         this.precio = precio;
         this.imagen = imagen;
         this.stock = stock;
-        this.cantidad = 0;
+        this.cantidadEnCarrito = 0;
     }
 
     agregarCantidad(cantidadDeseada){
-        this.cantidad = this.cantidad + cantidadDeseada;
+        this.cantidadEnCarrito = this.cantidadEnCarrito + cantidadDeseada;
     }
 
     descripcion(){
-        return "id: " + this.id + " - " + this.nombre + " (" + this.tipo + ") " + "precio: $" + this.precio + "\n";
+        return "- id: " + this.id + " - " + this.nombre + " (" + this.tipo + ") " + "precio: $" + this.precio + "\n";
     }
 
     descripcionParaCarrito(){
-        return "id: " + this.id + " - " + this.nombre + " (" + this.tipo + ") " + "precio: $" + this.precio + " cantidad: "+ this.cantidad + "\n";
+        return "- id: " + this.id + " - " + this.nombre + " (" + this.tipo + ") " + "precio: $" + this.precio + " cantidad: "+ this.cantidadEnCarrito + "\n";
     }
 }
 
@@ -164,7 +162,9 @@ class ProductoController{
     }
 
     agregar(producto){
-        this.listaProductos.push(producto);
+        if (producto instanceof Producto) {
+            this.listaProductos.push(producto);
+        }
     }
 
     mostrar(){
@@ -178,6 +178,17 @@ class ProductoController{
     buscarId(id){
         return this.listaProductos.find(producto => producto.id == id);
     }
+
+    cargarDatos(){
+        this.agregar(new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 5));
+        this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product1.jpg", 5));
+        this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product1.jpg", 5));
+        this.agregar(new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product1.jpg", 5));
+        this.agregar(new Producto(5, "Vino Durigutti Cabernet Franc", "Tinto", 3000, "./img/product1.jpg", 5));
+        this.agregar(new Producto(6, "Vino Durigutti Tempranillo", "Tinto", 3500, "./img/product1.jpg", 5));
+        this.agregar(new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product1.jpg", 5));
+        this.agregar(new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product1.jpg", 5));
+    }
 }
 
 class Carrito{
@@ -185,65 +196,97 @@ class Carrito{
         this.listaCarrito = [];
     }
 
-    agregar(productoNuevo){
-        let existe = this.listaCarrito.some(producto => producto.id == productoNuevo.id);
-        if(!existe){
-            this.listaCarrito.push(productoNuevo);
+    agregar(productoAlCarrito){
+        let existe = this.listaCarrito.some(producto => producto.id == productoAlCarrito.id);
+        if(!existe && productoAlCarrito instanceof Producto){
+            this.listaCarrito.push(productoAlCarrito);
         }
     }
 
     mostrar(){
-        let descripcionListaCompra = "Carrito: \n\n"
-        this.listaCarrito.forEach( producto => {
-            descripcionListaCompra = descripcionListaCompra + producto.descripcionParaCarrito();
-        })
+        let descripcionListaCompra = "";
+        if (this.estaVacio()){
+            descripcionListaCompra = "El carrito esta vacío";
+        }
+        else {
+            this.listaCarrito.forEach( producto => {
+                descripcionListaCompra = descripcionListaCompra + producto.descripcionParaCarrito();
+            })
+        }
         return descripcionListaCompra;
     }
 
+    eliminarProducto(idProducto, cantidad){
+        const productoAEliminar = this.listaCarrito.find(producto => producto.id === idProducto);
+
+        if(!productoAEliminar){
+            alert("El id ingresado es incorrecto.");
+        }
+        else {
+            if (cantidad >= productoAEliminar.cantidadEnCarrito) {
+                this.listaCarrito = this.listaCarrito.filter(producto => producto.id !== idProducto);
+            } else {
+                productoAEliminar.cantidadEnCarrito -= cantidad;
+            }
+        }
+    }
+
     calcularTotal(){
-        return this.listaCarrito.reduce((total,producto) => total + producto.precio * producto.cantidad, 0);
+        return this.listaCarrito.reduce((total,producto) => total + producto.precio * producto.cantidadEnCarrito, 0);
+    }
+
+    estaVacio(){
+        return this.listaCarrito.length === 0;
+    }
+
+    vaciar(){
+        this.listaCarrito = [];
     }
 }
 
-const p1 = new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 5);
-const p2 = new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product1.jpg", 5);
-const p3 = new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product1.jpg", 5);
-const p4 = new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product1.jpg", 5);
-const p5 = new Producto(5, "Vino Durigutti Cabernet Franc", "Tinto", 3000, "./img/product1.jpg", 5);
-const p6 = new Producto(6, "Vino Durigutti Tempranillo", "Tinto", 3500, "./img/product1.jpg", 5);
-const p7 = new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product1.jpg", 5);
-const p8 = new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product1.jpg", 5);
+function simularCarrito() {
+    let opcionElegida;
+    do{
+        //mostrar carrito
+        if (carrito.estaVacio()){
+            opcionElegida = Number(prompt("Carrito: \n" + carrito.mostrar() + "\n\nIngrese el número de opción para continuar: \n 0. Salir sin comprar. \n 1. Agregar producto al carrito."));
+        }
+        else {
+            opcionElegida = Number(prompt("Carrito: \n" + carrito.mostrar() + "\n\nIngrese el número de opción para continuar: \n 0. Salir sin comprar. \n 1. Agregar producto al carrito. \n 2. Eliminar producto del carrito. \n 3. Vaciar carrito. \n 4. Finalizar compra."));
+        }
+
+        if (opcionElegida === 1){
+            //elegir producto para comprar
+            let idProducto = Number(prompt("Listado de productos:\n" + controladorP.mostrar() + "\n\nIngrese el ID del producto que desea comprar:"));
+            const producto = controladorP.buscarId(idProducto);
+            let cantidadDeseada = Number(prompt("Ingrese la cantidad que desea"));
+            producto.agregarCantidad(cantidadDeseada);
+            carrito.agregar(producto);
+        }
+        else if(opcionElegida === 2 && !carrito.estaVacio()){
+            //eliminar producto del carrito
+            let idProductoAEliminar = Number(prompt("Carrito: \n" + carrito.mostrar() + "\nIngrese el ID del producto que desea eliminar:"));
+            let cantidadAEliminar = Number(prompt("Ingrese la cantidad que desea eliminar:"));
+            carrito.eliminarProducto(idProductoAEliminar, cantidadAEliminar);
+        }
+        else if(opcionElegida === 3 && !carrito.estaVacio()){
+            //vaciar carrito
+            carrito.vaciar();
+        }
+        else if(opcionElegida === 4 && !carrito.estaVacio()){
+            //finalizar compra
+            let costoEnvio = calcularCostoEnvio();
+            let costoCompra = carrito.calcularTotal();
+            let costoTotal = costoEnvio + costoCompra;
+            alert("El total es de: $" + costoTotal + "\n-Compra: $ " + costoCompra +"\n-Envío: $ " + costoEnvio);
+            carrito.vaciar();
+            break;
+        }
+    }while(opcionElegida != "0")
+}
 
 const carrito = new Carrito();
 const controladorP = new ProductoController();
-
-controladorP.agregar(p1);
-controladorP.agregar(p2);
-controladorP.agregar(p3);
-controladorP.agregar(p4);
-controladorP.agregar(p5);
-controladorP.agregar(p6);
-controladorP.agregar(p7);
-controladorP.agregar(p8);
-
-function simularCarrito() {
-    let respuesta;
-    do{
-        let id = Number(prompt("Listado de productos:\n" + controladorP.mostrar() + "\n\nIngrese el ID del producto que desea comprar:"));
-        const producto = controladorP.buscarId(id);
-        let cantidadDeseada = Number(prompt("Ingrese la cantidad que desea"));
-        producto.agregarCantidad(cantidadDeseada);
-        carrito.agregar(producto);
-        alert(carrito.mostrar());
-
-        respuesta = prompt("¿Desea finalizar la compra? (escriba 'SI' para finalizar)").toLowerCase();
-    }while(respuesta != "si")
-
-    let costoEnvio = calcularCostoEnvio();
-    let costoCompra = carrito.calcularTotal();
-    let costoTotal = costoEnvio + costoCompra;
-alert("El total es de: $" + costoTotal + "\n-Compra: $ " + costoCompra +"\n-Envío: $ " + costoEnvio);
-}
-
+controladorP.cargarDatos();
 const botonSimular = document.getElementById("boton-simular-carrito");
 botonSimular.addEventListener("click", simularCarrito);
