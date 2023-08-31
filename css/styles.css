@@ -507,12 +507,16 @@ section {
   flex-direction: column-reverse;
 }
 
+
+@media screen and (min-width: 350px) {
+  .tasting-title {
+    font-size: 36px;
+  }
+} 
+
 @media screen and (min-width: 992px) {
   .tasting-container {
     width: 75vw;
-  }
-  .tasting-title {
-    font-size: 36px;
   }
   .tasting-card-top-items{
     flex-direction: row-reverse;
@@ -520,7 +524,7 @@ section {
   .tasting-card-pic{
     height: 80px;
     width: 80px;
-}
+  }
 }
 
 /* ..................
@@ -547,7 +551,7 @@ section {
   height: 100%;
   position: absolute;
   background-color: #202020;
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .winery-title {
@@ -564,6 +568,11 @@ section {
   text-align: center;
 }
 
+.winery-minipic {
+  width: 53vw;
+  position: relative;
+}
+
 .winery-description {
   color:white;
   position: relative;
@@ -573,12 +582,22 @@ section {
   font-size: 12px;
   font-style: italic;
   padding: 4.5rem 0;
+  text-align: center;
+}
+
+@media screen and (min-width: 576px) {
+  .winery-minipic {
+    width: 43vw;
+  }
 }
 
 @media screen and (min-width: 992px) {
+  .winery-minipic {
+    width: 23vw;
+  }
   .winery-description {
     line-height: 36px;
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -624,6 +643,7 @@ section {
   line-height: 26px;
   font-size: 14px;
   color: #5f5f5f;
+  text-align: justify;
 }
 
 .about-extra-content-img-wrapper {
@@ -653,6 +673,7 @@ section {
   line-height: 26px;
   font-size: 14px;
   color: #5f5f5f;
+  text-align: justify;
 }
 
 @media screen and (min-width: 992px) {
