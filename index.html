@@ -66,30 +66,23 @@
     </div>
   </nav>
 
-  <div class="offcanvas offcanvas-end mt-5" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Carrito</h5>
+      <h4 class="offcanvas-title" id="offcanvasNavbarLabel">Carrito de compras</h4>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <hr>
-    <div class="offcanvas-body d-flex flex-column">
-      <ul class="navbar-nav flex-grow-1 pe-3">
-        <li>
-          <p>Producto 1</p>
-        </li>
-        <li>
-          <p>Producto 2</p>
-        </li>
-      </ul>
-      <div class="row mb-3">
-        <div>
-          <button type="button" id="boton-simular-carrito" class="btn btn-dark cart-btn">Simular carrito</button>
+    <div class="offcanvas-body d-flex flex-column justify-content-between">
+      <div>
+        <div class="offcanvas-subtitle d-flex justify-content-between pe-5 pt-2 pb-2">
+          <p>Producto</p>
+          <p>Subtotal</p>
+        </div>
+        <ul id="productos-carrito-container" class="navbar-nav flex-grow-1">
+        </ul>
+        <div id="subtotal-carrito-container" class="cart-subtotal d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-1 me-2">
         </div>
       </div>
-      <div class="row mb-3">
-        <div>
-          <button type="button" class="btn btn-dark cart-btn">Finalizar compra</button>
-        </div>
+      <div id="total-carrito-container">
       </div>
     </div>
   </div>
@@ -132,65 +125,13 @@
             <p>Espumantes</p>
           </div>
         </div>
-        <div id="productos-container" class="row row-cols-2 row-cols-sm-4 justify-content-between align-items-center m-sm-5 ps-lg-5 pe-lg-5">
-          <div class="col-6 col-sm-3 d-flex justify-content-center products__block__item">
-            <div class="products__block__item__box">
-              <div class="products__block__item__box__image-container">
-                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
-              </div>
-              <p class="products__block__item__box__name">HARD CODED DE PRUEBA</p>
-              <p class="products__block__item__box__title">Tinto</p>
-              <p class="products__block__item__box__price">$400</p>           
-              <div>
-                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
-              </div>  
-            </div>
-          </div>
-          <div class="col-6 col-sm-3 d-flex justify-content-center products__block__item">
-            <div class="products__block__item__box">
-              <div class="products__block__item__box__image-container">
-                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
-              </div>
-              <p class="products__block__item__box__name">HARD CODED DE PRUEBA</p>
-              <p class="products__block__item__box__title">Blanco</p>
-              <p class="products__block__item__box__price">$400</p>           
-              <div>
-                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
-              </div>  
-            </div>
-          </div>
-          <div class="col-6 col-sm-3 d-flex justify-content-center products__block__item">
-            <div class="products__block__item__box">
-              <div class="products__block__item__box__image-container">
-                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
-              </div>
-              <p class="products__block__item__box__name">HARD CODED DE PRUEBA</p>
-              <p class="products__block__item__box__title">Rosa</p>
-              <p class="products__block__item__box__price">$400</p>           
-              <div>
-                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
-              </div>  
-            </div>
-          </div>
-          <div class="col-6 col-sm-3 d-flex justify-content-center products__block__item">
-            <div class="products__block__item__box">
-              <div class="products__block__item__box__image-container">
-                  <img src="./img/product1.jpg" class="products__block__item__box__image-container__img" alt="...">        
-              </div>
-              <p class="products__block__item__box__name">HARD CODED DE PRUEBA</p>
-              <p class="products__block__item__box__title">Tinto</p>
-              <p class="products__block__item__box__price">$400</p>           
-              <div>
-                  <button type="button" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
-              </div>  
-            </div>
-          </div>
+        <div id="productos-container" class="row row-cols-2 row-cols-sm-4 justify-content-between align-items-center ms-sm-5 me-sm-5 ps-lg-5 pe-lg-5">
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div>
             <button type="button" class="btn btn-dark products__all_products_btn">Ver todos los productos</button>
           </div>
-        </div>
+        </div> -->
       </section>
 
       <section id="degustaciones" class="container-fluid tasting mb-3">
@@ -263,8 +204,8 @@
         </div>
         <div class="row winery justify-content-center align-items-center pb-3">
           <div class="winery-overlay"></div>
-          <div class="col-md-7 d-flex flex-column justify-content-center align-items-center">
-            <img class="winery-minipic mt-5 pt-5" src="./img/wineshop3.jpg" alt="foto de vinoteca">
+          <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-5 pt-5">
+            <img class="winery-minipic" src="./img/wineshop3.jpg" alt="foto de vinoteca">
             <p class="winery-description">"Desde los viñedos más antiguos hasta las añadas más recientes, nuestro espacio alberga un tesoro de experiencias enológicas..."</p>
           </div>
         </div>

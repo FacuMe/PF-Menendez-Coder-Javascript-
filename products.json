@@ -5,7 +5,8 @@
       "tipo": "Tinto",
       "precio": "$2000",
       "imagen": "./img/product1.jpg",
-      "stock": 5
+      "stock": 5,
+      "cantidadEnCarrito": 0
     },
     {
       "id":2,
@@ -13,7 +14,8 @@
       "tipo": "Blanco",
       "precio": "$1800",
       "imagen": "./img/product1.jpg",
-      "stock": 5
+      "stock": 5,
+      "cantidadEnCarrito": 0
     },
     {
       "id":3,
@@ -21,7 +23,8 @@
       "tipo": "Rosado",
       "precio": "$1500",
       "imagen": "./img/product1.jpg",
-      "stock": 5
+      "stock": 5,
+      "cantidadEnCarrito": 0
     },
     {
       "id":4,
@@ -29,7 +32,8 @@
       "tipo": "Rosado",
       "precio": "$1500",
       "imagen": "./img/product1.jpg",
-      "stock": 5
+      "stock": 5,
+      "cantidadEnCarrito": 0
     },
     {
       "id":5,
@@ -37,7 +41,8 @@
       "tipo": "Rosado",
       "precio": "$1500",
       "imagen": "./img/product1.jpg",
-      "stock": 5
+      "stock": 5,
+      "cantidadEnCarrito": 0
     },
     {
       "id":6,
@@ -45,7 +50,8 @@
       "tipo": "Rosado",
       "precio": "$1500",
       "imagen": "./img/product1.jpg",
-      "stock": 5
+      "stock": 5,
+      "cantidadEnCarrito": 0
     },
     {
       "id":7,
@@ -53,7 +59,8 @@
       "tipo": "Rosado",
       "precio": "$1500",
       "imagen": "./img/product1.jpg",
-      "stock": 5
+      "stock": 5,
+      "cantidadEnCarrito": 0
     },
     {
       "id":8,
@@ -61,6 +68,7 @@
       "tipo": "Rosado",
       "precio": "$1500",
       "imagen": "./img/product1.jpg",
-      "stock": 5
+      "stock": 5,
+      "cantidadEnCarrito": 0
     }
 ]

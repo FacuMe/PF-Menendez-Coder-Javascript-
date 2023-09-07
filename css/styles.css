@@ -133,24 +133,131 @@ ul {
   border-bottom: 2px solid #790f29;
 }
 
-.offcanvas hr {
-  border-color:#979090;
-  background-color: #979090;
-  color:#979090;
+.offcanvas, .offcanvas-lg, .offcanvas-md, .offcanvas-sm, .offcanvas-xl, .offcanvas-xxl {
+  --bs-offcanvas-width: 500px;
 }
 
-.cart-btn {
+.offcanvas-title {
+  padding-top: 1vh;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.offcanvas-subtitle {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  border-top: 1px solid #d1cdcd;
+  border-bottom: 1px solid #d1cdcd;
+}
+
+.empty-cart {
+  font-size: 13px;
+  font-weight: 600;
+  align-self: center;
+  text-transform: uppercase;
+  color:#ab2143
+}
+
+.cart-btn-final {
   background-color: #ab2143;
   border: none;
   border-radius: 0;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
-  
-.cart-btn:hover {
+
+.cart-btn-final:hover {
   background-color: #790f29;
   border: none;
+}
+
+.cart-btn-empty {
+  border: none;
+  border-radius: 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cart-prod-card {
+  border: none;
+}
+
+.cart-card-title {
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.cart-prod-card p, .cart-card-prod-quantity {
+  font-size: 13px;
+}
+
+.cart-card-prod-stock-error {
+  font-size: 10px !important;
+  color: red;
+  visibility: hidden;
+}
+
+.cart-card-prod-delete-icon {
+  padding-top: 1.5vh;
+  font-size: 20px;
+}
+
+.fa-trash-o:hover {
+  color:#767676; 
+  cursor: pointer;
+}
+
+.cart-card-prod-quantity-input, .cart-card-prod-quantity-btn {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: none; 
+}
+
+.cart-card-prod-quantity {
+  border: 1px solid #8e8e8e;
+}
+
+.cart-card-prod-quantity-input {
+  border-left: 1px solid #8e8e8e;
+  border-right: 1px solid #8e8e8e;
+}
+
+.cart-card-prod-quantity-input::-webkit-outer-spin-button,
+.cart-card-prod-quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cart-card-prod-quantity-btn {
+  color: #5f5f5f;
+}
+
+.cart-card-prod-quantity-btn:hover {
+  color: #9a9a9a;
+}
+
+.cart-subtotal h6, .cart-subtotal {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cart-total {
+  font-weight: bold;
+  border-top: 1px solid #d1cdcd;
+  font-size: 22px;
+}
+
+.cart-total h6 {
+  font-size: 22px;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 992px) {
@@ -569,8 +676,15 @@ section {
 }
 
 .winery-minipic {
-  width: 53vw;
+  width: 67vw;
   position: relative;
+  border: 3px solid #f4f4f4;
+  border-radius: 5px;
+  transition: all .3s ease-in-out
+}
+
+.winery-minipic:hover {
+  transform: scale(1.05);
 }
 
 .winery-description {
@@ -602,7 +716,7 @@ section {
 }
 
 /* ..................
-        ABOULT US
+        ABOUT US
    ..................
 */
 
