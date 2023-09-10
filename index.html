@@ -38,7 +38,7 @@
         </div>
     
         <div class="col-1 col-md-1 col-lg-1 d-flex align-items-end pb-2">
-          <button class="navbar-toggler d-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <button id="cart-toggle-btn" class="navbar-toggler d-block cart-toggle-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
               <span class="fa fa-shopping-cart" aria-hidden="true"></span>
           </button>
         </div>
@@ -77,9 +77,9 @@
           <p>Producto</p>
           <p>Subtotal</p>
         </div>
-        <ul id="productos-carrito-container" class="navbar-nav flex-grow-1">
+        <ul id="productos-carrito-container" class="navbar-nav flex-grow-1 productos-carrito-container">
         </ul>
-        <div id="subtotal-carrito-container" class="cart-subtotal d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-1 me-2">
+        <div id="subtotal-carrito-container" class="cart-subtotal d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-1">
         </div>
       </div>
       <div id="total-carrito-container">
@@ -127,11 +127,30 @@
         </div>
         <div id="productos-container" class="row row-cols-2 row-cols-sm-4 justify-content-between align-items-center ms-sm-5 me-sm-5 ps-lg-5 pe-lg-5">
         </div>
-        <!-- <div class="row">
+
+        <div class="row">
           <div>
             <button type="button" class="btn btn-dark products__all_products_btn">Ver todos los productos</button>
           </div>
-        </div> -->
+        </div>
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                <h5 class="modal-title mt-2 mb-4 pb-2 text-center" id="staticBackdropLabel">Tu producto fue agregado al carrito con éxito</h5>
+                <div class="success-icon mb-4">
+                  <div class="success-icon__tip"></div>
+                  <div class="success-icon__long"></div>
+                </div>
+                <div class="col-12 d-flex justify-content-center gap-4 mt-1 mb-3">
+                  <button type="button" class="btn btn-secondary modal__btn__shopping" data-bs-dismiss="modal">Seguir comprando</button>
+                  <button type="button" id="go-to-cart-btn" class="btn btn-primary modal__btn__cart" data-bs-dismiss="modal">Ir al carrito</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="degustaciones" class="container-fluid tasting mb-3">
@@ -205,7 +224,7 @@
         <div class="row winery justify-content-center align-items-center pb-3">
           <div class="winery-overlay"></div>
           <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-5 pt-5">
-            <img class="winery-minipic" src="./img/wineshop3.jpg" alt="foto de vinoteca">
+            <img class="winery-minipic img-fluid" src="./img/wineshop3.jpg" alt="foto de vinoteca">
             <p class="winery-description">"Desde los viñedos más antiguos hasta las añadas más recientes, nuestro espacio alberga un tesoro de experiencias enológicas..."</p>
           </div>
         </div>

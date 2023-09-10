@@ -16,6 +16,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
+//Go to cart button
+const goToCartBtn = document.getElementById("go-to-cart-btn");
+const cartToggleBtn = document.getElementById("cart-toggle-btn");
+goToCartBtn.addEventListener("click", () => {
+    cartToggleBtn.click();
+});
+
+
 
 // Carga de productos desde archivo JSON (TO DO)
 // let listaDeProductos = [];
@@ -210,7 +218,7 @@ class Producto{
                 <p class="products__block__item__box__title">${this.tipo}</p>
                 <p class="products__block__item__box__price">$${this.precio}</p>           
                 <div>
-                    <button type="button" id="ap-${this.id}" class="btn btn-dark products__block__item__box__btn">Agregar al carrito</button>       
+                    <button type="button" id="ap-${this.id}" class="btn btn-dark products__block__item__box__btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Agregar al carrito</button>       
                 </div>  
             </div>
         </div>`
@@ -240,7 +248,7 @@ class Producto{
                         </div>
                     </div>
                     <div class="col-3 card-body d-flex justify-content-end">
-                        <p class="cart-card-prod-subtotal">$${this.cantidadEnCarrito * this.precio}</p>
+                        <p id="cart-card-prod-subtotal-${this.id}" class="cart-card-prod-subtotal">$${this.cantidadEnCarrito * this.precio}</p>
                     </div>
                     <div class="col-1 cart-card-prod-delete-icon">
                         <i id="ep-${this.id}" class="fa fa-trash-o" aria-hidden="true"></i>
@@ -253,7 +261,7 @@ class Producto{
 
 class ProductoController{
     constructor(){
-        this.listaProductos = [];
+        this.listaProductos = this.listaProductos;
     }
 
     agregar(producto){
@@ -265,13 +273,13 @@ class ProductoController{
     cargarDatos(){
         this.listaProductos = [];
         this.agregar(new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 5, 0));
-        this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product1.jpg", 5, 0));
-        this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product1.jpg", 5, 0));
-        this.agregar(new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product1.jpg", 5, 0));
-        this.agregar(new Producto(5, "Vino Durigutti Cabernet Franc", "Tinto", 3000, "./img/product1.jpg", 5, 0));
+        this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product2.jpg", 5, 0));
+        this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product3.jpg", 5, 0));
+        this.agregar(new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product4.jpg", 5, 0));
+        this.agregar(new Producto(5, "Vino Durigutti Cabernet Franc", "Tinto", 3000, "./img/product5.jpg", 5, 0));
         this.agregar(new Producto(6, "Vino Durigutti Tempranillo", "Tinto", 3500, "./img/product1.jpg", 5, 0));
-        this.agregar(new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product1.jpg", 5, 0));
-        this.agregar(new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product1.jpg", 5, 0));
+        this.agregar(new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product2.jpg", 5, 0));
+        this.agregar(new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product3.jpg", 5, 0));
     }
 
     mostrarEnDOM(){
@@ -285,6 +293,7 @@ class ProductoController{
             btn_ap.addEventListener("click", () => {
                 producto.cantidadEnCarrito = 1;
                 carrito.agregar(producto);
+                carrito.guardarEnStorage();
                 carrito.mostrarEnDOM();
             });
         });
@@ -308,20 +317,36 @@ class Carrito{
         }
     }
 
-    estaVacio(){
-        return this.listaCarrito.length === 0;
+    calcularTotalProductos(){
+        return this.listaCarrito.reduce((total,producto) => total + producto.precio * producto.cantidadEnCarrito, 0);
     }
 
     eliminarProducto(IdProductoAEliminar){
         this.listaCarrito = this.listaCarrito.filter(producto => producto.id !== IdProductoAEliminar);
     }
 
+    estaVacio(){
+        return this.listaCarrito.length === 0;
+    }
+
     vaciar(){
         this.listaCarrito = [];
     }
 
-    calcularTotalProductos(){
-        return this.listaCarrito.reduce((total,producto) => total + producto.precio * producto.cantidadEnCarrito, 0);
+    guardarEnStorage(){
+        let listaCarritoJSON = JSON.stringify(this.listaCarrito);
+        localStorage.setItem("listaCarrito", listaCarritoJSON);
+    }
+
+    recuperarStorage(){
+        let listaAux = [];
+        let listaCarritoJSON = localStorage.getItem("listaCarrito");
+        let listaCarritoJS = JSON.parse(listaCarritoJSON);
+        listaCarritoJS.forEach( producto => {
+            let nuevoProducto = new Producto(...Object.values(producto));
+            listaAux.push(nuevoProducto);
+        })
+        this.listaCarrito = listaAux;
     }
 
     mostrarEnDOM(){
@@ -351,33 +376,40 @@ class Carrito{
                 const btn_minus = document.getElementById(`minus-prod-cart-btn-${producto.id}`);
                 const cartQuantity = document.getElementById(`prod-cart-quantity-${producto.id}`);
                 const error = document.getElementById(`prod-stock-error-${producto.id}`);
+
                 btn_ep.addEventListener("click", () => {
                     this.eliminarProducto(producto.id);
+                    this.guardarEnStorage();
                     this.mostrarEnDOM();
                 });
+
                 btn_plus.addEventListener("click", () => {
                     if(producto.cantidadEnCarrito + 1 > producto.stock) {
-                        producto.cantidadEnCarrito = producto.stock;
                         error.style.visibility = "visible";
                     }
                     else {
                         producto.agregarCantidad(1);
+                        this.guardarEnStorage();
                     }
                     cartQuantity.innerHTML = producto.cantidadEnCarrito;
+                    const prodCarritoSubtotal = document.getElementById(`cart-card-prod-subtotal-${producto.id}`);
+                    prodCarritoSubtotal.innerHTML = `$${producto.cantidadEnCarrito * producto.precio}`; 
                     const subtotalCarrito = document.getElementById("subtotal-carrito");
                     subtotalCarrito.innerHTML = `$${this.calcularTotalProductos()}`;
                     const totalCarrito = document.getElementById("total-carrito");
                     totalCarrito.innerHTML = `$${this.calcularTotalProductos()}`;
                 });
+
                 btn_minus.addEventListener("click", () => {
                     error.style.visibility = "hidden";
-                    if(producto.cantidadEnCarrito - 1 < 1) {
-                        producto.cantidadEnCarrito  = 1;
-                    }
-                    else {
+                    if(producto.cantidadEnCarrito != 1) {
                         producto.restarCantidad(1);
+                        console.log(producto.cantidadEnCarrito);
+                        this.guardarEnStorage();
                     }
                     cartQuantity.innerHTML = producto.cantidadEnCarrito;
+                    const prodCarritoSubtotal = document.getElementById(`cart-card-prod-subtotal-${producto.id}`);
+                    prodCarritoSubtotal.innerHTML = `$${producto.cantidadEnCarrito * producto.precio}`; 
                     const subtotalCarrito = document.getElementById("subtotal-carrito");
                     subtotalCarrito.innerHTML = `$${this.calcularTotalProductos()}`;
                     const totalCarrito = document.getElementById("total-carrito");
@@ -390,11 +422,11 @@ class Carrito{
             <p id="subtotal-carrito">$${this.calcularTotalProductos()}</p>`;
 
             totalCarritoContainer.innerHTML = `
-            <div class="cart-total d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-2 me-1">
+            <div class="cart-total d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-2">
                 <h6>Total: </h6>
                 <p id="total-carrito">$${this.calcularTotalProductos()}</p>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between pe-3">
                 <div>
                     <button type="button" class="btn btn-dark cart-btn-final">Finalizar compra</button>
                 </div>
@@ -406,6 +438,7 @@ class Carrito{
             const btn_ec = document.getElementById("empty-cart-btn");
             btn_ec.addEventListener("click", () => {
                 this.vaciar();
+                this.guardarEnStorage();
                 this.mostrarEnDOM();
             });
         }
@@ -418,4 +451,5 @@ const carrito = new Carrito();
 const controladorP = new ProductoController();
 controladorP.cargarDatos();
 controladorP.mostrarEnDOM();
+carrito.recuperarStorage();
 carrito.mostrarEnDOM();
