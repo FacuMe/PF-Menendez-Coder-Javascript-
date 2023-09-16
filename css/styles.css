@@ -369,6 +369,9 @@ section {
   background: white;
   color:#5f5f5f;
   border: 2px solid #d8d8d8;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0.5s ease;;
 }
 
 .fa-arrow-up {
@@ -839,7 +842,7 @@ body.modal-open {
   }
   .winery-description {
     line-height: 36px;
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 

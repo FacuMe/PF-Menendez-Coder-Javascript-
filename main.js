@@ -1,29 +1,27 @@
 //Change navbar when scrolled
-const brandLogo = document.querySelector('.brand-logo');
-const brand = document.querySelector('.brand');
-const brandContainer = document.querySelector('.brand-container');
+function navbarScrolled() {
+    const brandLogo = document.querySelector('.brand-logo');
+    const brand = document.querySelector('.brand');
+    const brandContainer = document.querySelector('.brand-container');
+    const backToTopBtn = document.getElementById('back-to-top-btn');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 10 && window.innerWidth > 992) {
-        brandLogo.classList.add('navbar-scrolled-logo');
-        brand.classList.add('navbar-scrolled-brand');
-        brandContainer.classList.add('navbar-scrolled-brand-container');
-    } 
-    else if (window.scrollY <= 10 || window.innerWidth < 992) {
-        brandLogo.classList.remove('navbar-scrolled-logo');
-        brand.classList.remove('navbar-scrolled-brand');
-        brandContainer.classList.remove('navbar-scrolled-brand-container');
-    }
-});
-
-//Go to cart button
-const goToCartBtn = document.getElementById("go-to-cart-btn");
-const cartToggleBtn = document.getElementById("cart-toggle-btn");
-goToCartBtn.addEventListener("click", () => {
-    cartToggleBtn.click();
-});
-
-
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 10 && window.innerWidth > 992) {
+            brandLogo.classList.add('navbar-scrolled-logo');
+            brand.classList.add('navbar-scrolled-brand');
+            brandContainer.classList.add('navbar-scrolled-brand-container');
+            backToTopBtn.style.visibility = "visible";
+            backToTopBtn.style.opacity = 1;
+        } 
+        else if (window.scrollY <= 10 || window.innerWidth < 992) {
+            brandLogo.classList.remove('navbar-scrolled-logo');
+            brand.classList.remove('navbar-scrolled-brand');
+            brandContainer.classList.remove('navbar-scrolled-brand-container');
+            backToTopBtn.style.visibility = "hidden";
+            backToTopBtn.style.opacity = 0;
+        }
+    });
+}
 
 // Carga de productos desde archivo JSON (TO DO)
 // let listaDeProductos = [];
@@ -37,156 +35,6 @@ goToCartBtn.addEventListener("click", () => {
 //         })
 //     .catch(error => console.error('Error al cargar los vinos:', error));
 // });
-
-// function mostrarTodosLosProductos(productos) {
-//     const productosContainer = document.getElementById('productos-container');
-  
-//             productos.forEach(producto => {
-//                 const productoCard = document.createElement('div');
-//                 productoCard.classList.add('col-6', 'col-sm-3', 'd-flex', 'justify-content-center', 'products__block__item');
-    
-//                 const productoBox = document.createElement('div');
-//                 productoBox.classList.add('products__block__item__box');
-    
-//                 const imageContainer = document.createElement('div');
-//                 imageContainer.classList.add('products__block__item__box__image-container');
-//                 const image = document.createElement('img');
-//                 image.src = producto.imagen; 
-//                 image.classList.add('products__block__item__box__image-container__img');
-//                 image.alt = producto.nombre;
-    
-//                 const name = document.createElement('p');
-//                 name.classList.add('products__block__item__box__name');
-//                 name.textContent = producto.nombre;
-    
-//                 const title = document.createElement('p');
-//                 title.classList.add('products__block__item__box__title');
-//                 title.textContent = producto.tipo;
-    
-//                 const price = document.createElement('p');
-//                 price.classList.add('products__block__item__box__price');
-//                 price.textContent = producto.precio;
-    
-//                 const buttonContainer = document.createElement('div');
-//                 const button = document.createElement('button');
-//                 button.type = 'button';
-//                 button.classList.add('btn', 'btn-dark', 'products__block__item__box__btn');
-//                 button.textContent = 'Agregar al carrito';
-    
-//                 imageContainer.appendChild(image);
-//                 productoBox.appendChild(imageContainer);
-//                 productoBox.appendChild(name);
-//                 productoBox.appendChild(title);
-//                 productoBox.appendChild(price);
-//                 buttonContainer.appendChild(button);
-//                 productoBox.appendChild(buttonContainer);
-//                 productoCard.appendChild(productoBox);
-//                 productosContainer.appendChild(productoCard);
-//             });
-// }
-
-// Filtro productos (TO DO)
-// function filtrarPorTipo(listaDeProductos){
-//     let productosFiltradosPorTipo = listaDeProductos.filter(producto => producto.tipo === "Tinto");
-//     return productosFiltradosPorTipo;
-// }
-
-
-// function simularCarrito() {
-//     let opcionElegida;
-//     do{
-//         //mostrar carrito
-//         if (carrito.estaVacio()){
-//             opcionElegida = Number(prompt("Carrito: \n" + carrito.mostrar() + "\n\nIngrese el número de opción para continuar: \n 0. Salir sin comprar. \n 1. Agregar producto al carrito."));
-//         }
-//         else {
-//             opcionElegida = Number(prompt("Carrito: \n" + carrito.mostrar() + "\n\nIngrese el número de opción para continuar: \n 0. Salir sin comprar. \n 1. Agregar producto al carrito. \n 2. Eliminar producto del carrito. \n 3. Vaciar carrito. \n 4. Finalizar compra."));
-//         }
-
-//         if (opcionElegida === 1){
-//             //elegir producto para comprar
-//             let idProducto = Number(prompt("Listado de productos:\n" + controladorP.mostrar() + "\n\nIngrese el ID del producto que desea comprar:"));
-//             const producto = controladorP.buscarId(idProducto);
-//             let cantidadDeseada = Number(prompt("Ingrese la cantidad que desea"));
-//             producto.agregarCantidad(cantidadDeseada);
-//             carrito.agregar(producto);
-//         }
-//         else if(opcionElegida === 2 && !carrito.estaVacio()){
-//             //eliminar producto del carrito
-//             let idProductoAEliminar = Number(prompt("Carrito: \n" + carrito.mostrar() + "\nIngrese el ID del producto que desea eliminar:"));
-//             let cantidadAEliminar = Number(prompt("Ingrese la cantidad que desea eliminar:"));
-//             carrito.eliminarProducto(idProductoAEliminar, cantidadAEliminar);
-//         }
-//         else if(opcionElegida === 3 && !carrito.estaVacio()){
-//             //vaciar carrito
-//             carrito.vaciar();
-//         }
-//         else if(opcionElegida === 4 && !carrito.estaVacio()){
-//             //finalizar compra
-//             let costoEnvio = calcularCostoEnvio();
-//             let costoCompra = carrito.calcularTotal();
-//             let costoTotal = costoEnvio + costoCompra;
-//             alert("El total es de: $" + costoTotal + "\n-Compra: $ " + costoCompra +"\n-Envío: $ " + costoEnvio);
-//             carrito.vaciar();
-//             break;
-//         }
-//     }while(opcionElegida != "0")
-// }
-
-// const carrito = new Carrito();
-// const controladorP = new ProductoController();
-// controladorP.cargarDatos();
-// const botonSimular = document.getElementById("boton-simular-carrito");
-// botonSimular.addEventListener("click", simularCarrito);
-
-
-// Función para calcular el costo de envío (PRIMERA PREENTREGA)
-// function calcularCostoEnvio() {
-//     let codigoPostal;
-//     let costoEnvio;
-    
-//     while (isNaN(codigoPostal) || codigoPostal < 1000 || codigoPostal > 2000) {
-//         codigoPostal = Number(prompt("Por favor, ingresa tu código postal:"));
-//         if (codigoPostal === 0) {
-//             return;
-//         }
-//         else if (isNaN(codigoPostal) || codigoPostal < 1000 || codigoPostal > 2000) {
-//             alert("Ingresa un código postal numérico válido (entre 1000-2000, sólo Buenos Aires y CABA)");
-//         }
-//     }
-
-//     if (codigoPostal >= 1700 && codigoPostal <= 1800) {
-//         costoEnvio = 0;
-//     } 
-//     else if ((codigoPostal >= 1600 && codigoPostal <= 1699) || (codigoPostal >= 1801 && codigoPostal <= 1900)) {
-//         costoEnvio = 500;
-//     }
-//     else {
-//         costoEnvio = 800;
-//     }
-
-//     alert("El costo de envío para tu zona es $" + costoEnvio + ".");
-//     let envioExpress = calcularEnvioExpress(); 
-//     let costoFinalEnvio = costoEnvio + envioExpress;
-//     return costoFinalEnvio;
-// }
-
-// function calcularEnvioExpress () {
-//     let valorEnvioExpress;
-//     let envioExpress;
-
-//     while (envioExpress !== 1 && envioExpress !== 2) {
-//         envioExpress = Number(prompt("¿Quieres envío express? \n (Costo $1.000 adicional) \n Ingresa el número de opción: \n 1. Si. \n 2. No"));
-//     }
-//     if (envioExpress === 1) {
-//         valorEnvioExpress = 1000;
-//         return valorEnvioExpress;
-//     }
-//     else {
-//         return 0;
-//     }
-// }
-
 
 class Producto{
     constructor(id, nombre, tipo, precio, imagen, stock, cantidadEnCarrito){
@@ -272,14 +120,18 @@ class ProductoController{
 
     cargarDatos(){
         this.listaProductos = [];
-        this.agregar(new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 5, 0));
-        this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product2.jpg", 5, 0));
-        this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product3.jpg", 5, 0));
-        this.agregar(new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product4.jpg", 5, 0));
+        this.agregar(new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 1, 0));
+        this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product2.jpg", 2, 0));
+        this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product3.jpg", 3, 0));
+        this.agregar(new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product4.jpg", 4, 0));
         this.agregar(new Producto(5, "Vino Durigutti Cabernet Franc", "Tinto", 3000, "./img/product5.jpg", 5, 0));
-        this.agregar(new Producto(6, "Vino Durigutti Tempranillo", "Tinto", 3500, "./img/product1.jpg", 5, 0));
-        this.agregar(new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product2.jpg", 5, 0));
-        this.agregar(new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product3.jpg", 5, 0));
+        this.agregar(new Producto(6, "Vino Durigutti Tempranillo", "Tinto", 3500, "./img/product1.jpg", 1, 0));
+        this.agregar(new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product2.jpg", 2, 0));
+        this.agregar(new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product3.jpg", 3, 0));
+        this.agregar(new Producto(9, "Vino Termidor Tinto", "Tinto", 3000, "./img/product5.jpg", 5, 0));
+        this.agregar(new Producto(10, "Vino Uvita Fiesta", "Tinto", 3500, "./img/product1.jpg", 1, 0));
+        this.agregar(new Producto(11, "Vino Concha y Toro", "Blanco", 6000, "./img/product2.jpg", 2, 0));
+        this.agregar(new Producto(12, "Vino Pomery", "Espumante", 8000, "./img/product3.jpg", 3, 0));
     }
 
     mostrarEnDOM(){
@@ -291,11 +143,16 @@ class ProductoController{
         this.listaProductos.forEach( producto => {
             const btn_ap = document.getElementById(`ap-${producto.id}`);
             btn_ap.addEventListener("click", () => {
-                producto.cantidadEnCarrito = 1;
                 carrito.agregar(producto);
                 carrito.guardarEnStorage();
                 carrito.mostrarEnDOM();
             });
+        });
+
+        const goToCartBtn = document.getElementById("go-to-cart-btn");
+        const cartToggleBtn = document.getElementById("cart-toggle-btn");
+        goToCartBtn.addEventListener("click", () => {
+            cartToggleBtn.click();
         });
     }
 
@@ -311,9 +168,27 @@ class Carrito{
     }
 
     agregar(productoAlCarrito){
+        if (!productoAlCarrito instanceof Producto) {
+            return;
+        }
         let existe = this.listaCarrito.some(producto => producto.id == productoAlCarrito.id);
-        if(!existe && productoAlCarrito instanceof Producto){
+        if(!existe){
+            productoAlCarrito.cantidadEnCarrito = 1;
             this.listaCarrito.push(productoAlCarrito);
+        }
+        else{
+            let productoYaEnCarrito = this.listaCarrito.find(producto => producto.id == productoAlCarrito.id)
+            productoYaEnCarrito.cantidadEnCarrito + 1 <= productoYaEnCarrito.stock && productoYaEnCarrito.agregarCantidad(1);
+        }
+    }
+
+    verificarStock(producto){
+        const error = document.getElementById(`prod-stock-error-${producto.id}`);
+        if(producto.cantidadEnCarrito == producto.stock){
+            error.style.visibility = "visible";
+        }
+        else {
+            error.style.visibility = "hidden";
         }
     }
 
@@ -349,79 +224,64 @@ class Carrito{
         this.listaCarrito = listaAux;
     }
 
-    mostrarEnDOM(){
+    cargarProductosDelCarrito(){
         const productosCarritoContainer = document.getElementById("productos-carrito-container");
+        this.listaCarrito.forEach( producto => {
+            productosCarritoContainer.innerHTML += producto.descripcionCarrito();
+        });
+
+        this.listaCarrito.forEach( producto => {
+            this.verificarStock(producto);
+            this.cargarBotonEliminarProducto(producto);
+            this.cargarBotonesCantidadEnCarrito(producto);
+        });
+    }
+
+    cargarBotonEliminarProducto(producto){
+        const btn_ep = document.getElementById(`ep-${producto.id}`);
+
+        btn_ep.addEventListener("click", () => {
+            this.eliminarProducto(producto.id);
+            this.guardarEnStorage();
+            this.mostrarEnDOM();
+        });
+    }
+
+    cargarBotonesCantidadEnCarrito(producto){
+        const btn_plus = document.getElementById(`plus-prod-cart-btn-${producto.id}`);
+        const btn_minus = document.getElementById(`minus-prod-cart-btn-${producto.id}`);
+        const cartQuantity = document.getElementById(`prod-cart-quantity-${producto.id}`);
+
+        btn_plus.addEventListener("click", () => {
+            if (producto.cantidadEnCarrito < producto.stock) {
+                producto.agregarCantidad(1);
+                this.guardarEnStorage();
+            }
+            this.mostrarEnDOM();
+        });
+
+        btn_minus.addEventListener("click", () => {
+            if (producto.cantidadEnCarrito > 1) {
+                producto.restarCantidad(1);
+                this.guardarEnStorage();
+            }
+            this.mostrarEnDOM();
+        });
+
+        cartQuantity.innerHTML = producto.cantidadEnCarrito;
+        this.verificarStock(producto);
+    }
+
+    cargarSubtotalProductos(){
         const subtotalCarritoContainer = document.getElementById("subtotal-carrito-container");
-        const totalCarritoContainer = document.getElementById("total-carrito-container");
-        productosCarritoContainer.innerHTML = "";
-        subtotalCarritoContainer.innerHTML = "";
-        totalCarritoContainer.innerHTML = "";
-
-        if (this.estaVacio()){
-            productosCarritoContainer.innerHTML = `
-            <li class="empty-cart pt-4">
-                <p>El carrito de compras está vacío.<p>
-            <li>`;
-
-            subtotalCarritoContainer.innerHTML = "";
-        }
-        else {
-            this.listaCarrito.forEach( producto => {
-                productosCarritoContainer.innerHTML += producto.descripcionCarrito();
-            });
-
-            this.listaCarrito.forEach( producto => {
-                const btn_ep = document.getElementById(`ep-${producto.id}`);
-                const btn_plus = document.getElementById(`plus-prod-cart-btn-${producto.id}`);
-                const btn_minus = document.getElementById(`minus-prod-cart-btn-${producto.id}`);
-                const cartQuantity = document.getElementById(`prod-cart-quantity-${producto.id}`);
-                const error = document.getElementById(`prod-stock-error-${producto.id}`);
-
-                btn_ep.addEventListener("click", () => {
-                    this.eliminarProducto(producto.id);
-                    this.guardarEnStorage();
-                    this.mostrarEnDOM();
-                });
-
-                btn_plus.addEventListener("click", () => {
-                    if(producto.cantidadEnCarrito + 1 > producto.stock) {
-                        error.style.visibility = "visible";
-                    }
-                    else {
-                        producto.agregarCantidad(1);
-                        this.guardarEnStorage();
-                    }
-                    cartQuantity.innerHTML = producto.cantidadEnCarrito;
-                    const prodCarritoSubtotal = document.getElementById(`cart-card-prod-subtotal-${producto.id}`);
-                    prodCarritoSubtotal.innerHTML = `$${producto.cantidadEnCarrito * producto.precio}`; 
-                    const subtotalCarrito = document.getElementById("subtotal-carrito");
-                    subtotalCarrito.innerHTML = `$${this.calcularTotalProductos()}`;
-                    const totalCarrito = document.getElementById("total-carrito");
-                    totalCarrito.innerHTML = `$${this.calcularTotalProductos()}`;
-                });
-
-                btn_minus.addEventListener("click", () => {
-                    error.style.visibility = "hidden";
-                    if(producto.cantidadEnCarrito != 1) {
-                        producto.restarCantidad(1);
-                        console.log(producto.cantidadEnCarrito);
-                        this.guardarEnStorage();
-                    }
-                    cartQuantity.innerHTML = producto.cantidadEnCarrito;
-                    const prodCarritoSubtotal = document.getElementById(`cart-card-prod-subtotal-${producto.id}`);
-                    prodCarritoSubtotal.innerHTML = `$${producto.cantidadEnCarrito * producto.precio}`; 
-                    const subtotalCarrito = document.getElementById("subtotal-carrito");
-                    subtotalCarrito.innerHTML = `$${this.calcularTotalProductos()}`;
-                    const totalCarrito = document.getElementById("total-carrito");
-                    totalCarrito.innerHTML = `$${this.calcularTotalProductos()}`;
-                });
-            });
-
-            subtotalCarritoContainer.innerHTML = `
+        subtotalCarritoContainer.innerHTML = `
             <h6>Subtotal (sin envío): </h6>
             <p id="subtotal-carrito">$${this.calcularTotalProductos()}</p>`;
+    }
 
-            totalCarritoContainer.innerHTML = `
+    cargarTotalFinalizarYVaciar(){
+        const totalCarritoContainer = document.getElementById("total-carrito-container");
+        totalCarritoContainer.innerHTML = `
             <div class="cart-total d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-2">
                 <h6>Total: </h6>
                 <p id="total-carrito">$${this.calcularTotalProductos()}</p>
@@ -435,18 +295,38 @@ class Carrito{
                 </div>
             </div>`;
 
-            const btn_ec = document.getElementById("empty-cart-btn");
-            btn_ec.addEventListener("click", () => {
-                this.vaciar();
-                this.guardarEnStorage();
-                this.mostrarEnDOM();
-            });
+        const btn_ec = document.getElementById("empty-cart-btn");
+        btn_ec.addEventListener("click", () => {
+            this.vaciar();
+            this.guardarEnStorage();
+            this.mostrarEnDOM();
+        });
+    }
+
+    mostrarEnDOM(){
+        const productosCarritoContainer = document.getElementById("productos-carrito-container");
+        const subtotalCarritoContainer = document.getElementById("subtotal-carrito-container");
+        const totalCarritoContainer = document.getElementById("total-carrito-container");
+        productosCarritoContainer.innerHTML = "";
+        subtotalCarritoContainer.innerHTML = "";
+        totalCarritoContainer.innerHTML = "";
+
+        if (this.estaVacio()){
+            productosCarritoContainer.innerHTML = `
+            <div class="empty-cart pt-4">
+                <p>El carrito de compras está vacío.<p>
+            </div>`;
+        }
+        else {
+            this.cargarProductosDelCarrito();
+            this.cargarSubtotalProductos();
+            this.cargarTotalFinalizarYVaciar();
         }
     }
 
 }
 
-
+navbarScrolled();
 const carrito = new Carrito();
 const controladorP = new ProductoController();
 controladorP.cargarDatos();
