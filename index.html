@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="./css/styles.css">
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 </head>
 
 <body>
@@ -88,6 +90,82 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="finalizarCompra" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="finalizarCompraLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form type="submit" id="formulario-pago" action="" method="post">
+          <div class="modal-header justify-content-center align-items-center">
+            <h5 class="modal-title col-10 offset-1 mt-3 mb-2 pb-2 text-center" id="finalizarCompraLabel">datos del pago</h5>
+            <button type="button" class="btn-close col-2" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+            <div class="row g-3 justify-content-start form-finalizar-compra-inputs">
+              <div class="col-12 dropdown">
+                <select class="form-select" name="tarjeta" id="tarjeta" required>
+                  <option value="" selected disabled>Seleccione Tarjeta</option>
+                  <option value="debito">Tarjeta de Débito</option>
+                  <option value="credito">Tarjeta de Crédito</option>
+                </select>
+              </div>
+              <div class="col-12 dropdown">
+                <select class="form-select" name="tipoTarjeta" id="tipoTarjeta" required>
+                  <option value="" selected disabled>Seleccione Tipo de Tarjeta</option>
+                  <option value="visa">Visa</option>
+                  <option value="mastercard">Mastercard</option>
+                  <option value="amex">American Express</option>
+                  <option value="cabal">Cabal</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="payment-card">Número de Tarjeta</label>
+                <div class="d-flex align-items-center">
+                  <input type="text" class="form-control payment-card-inputs" id="tarjeta1" placeholder="0000" maxlength="4" pattern="[0-9]{4}" required>
+                  <p class="ps-1 pe-1">-</p>
+                  <input type="text" class="form-control payment-card-inputs" id="tarjeta2" placeholder="0000" maxlength="4" pattern="[0-9]{4}" required>
+                  <p class="ps-1 pe-1">-</p>
+                  <input type="text" class="form-control payment-card-inputs" id="tarjeta3" placeholder="0000" maxlength="4" pattern="[0-9]{4}" required>
+                  <p class="ps-1 pe-1">-</p>
+                  <input type="text" class="form-control payment-card-inputs" id="tarjeta4" placeholder="0000" maxlength="4" pattern="[0-9]{4}" required>
+                </div>
+                <div class="invalid-feedback">
+                  El número de tarjeta es requerido.
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="name">Nombre</label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="Nombre y Apellido" value="" autocomplete="off" maxlength="40" required>
+                <div class="invalid-feedback">
+                  El nombre es requerido.
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="tel">Teléfono</label>
+                <input type="tel" name="phone" class="form-control" id="tel" placeholder="Ej. 1155555555 (sin guiones ni espacios)" value="" autocomplete="off" maxlength="20" pattern="[0-9]{8,20}" required>
+                <div class="invalid-feedback">
+                  El número telefónico es requerido.
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Ej. myemail@example.com" autocomplete="off" maxlength="60" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                <div class="invalid-feedback">
+                  Ingresá una dirección de correo electrónico válida.
+                </div>
+              </div>
+              <div class="col-12 form-check ms-2">
+                <input type="checkbox" name="news" class="form-check-input news-checkbox shadow-none" id="save_info" value="yes">
+                <label class="form-check-label" for="save-info">Quiero recibir novedades</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer justify-content-center">
+            <button type="submit" class="btn btn-secondary form-comprar-btn">Comprar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
     <header>
@@ -129,12 +207,6 @@
         </div>
         <div id="productos-container" class="row row-cols-2 row-cols-sm-4 justify-content-between align-items-center ms-sm-5 me-sm-5 ps-lg-5 pe-lg-5">
         </div>
-
-        <!-- <div class="row">
-          <div>
-            <button type="button" class="btn btn-dark products__all_products_btn">Ver todos los productos</button>
-          </div>
-        </div> -->
 
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -327,6 +399,8 @@
     <script>
         AOS.init();
     </script>
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
     <!-- Main js -->
     <script src="./main.js"></script>
 </body>

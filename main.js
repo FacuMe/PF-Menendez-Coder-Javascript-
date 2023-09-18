@@ -1,28 +1,39 @@
 //Change navbar when scrolled
-function navbarScrolled() {
+function pageScrolled(){
     const brandLogo = document.querySelector('.brand-logo');
     const brand = document.querySelector('.brand');
     const brandContainer = document.querySelector('.brand-container');
     const backToTopBtn = document.getElementById('back-to-top-btn');
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 10 && window.innerWidth > 992) {
-            brandLogo.classList.add('navbar-scrolled-logo');
-            brand.classList.add('navbar-scrolled-brand');
-            brandContainer.classList.add('navbar-scrolled-brand-container');
+        if (window.scrollY > 10) {
             backToTopBtn.style.visibility = "visible";
             backToTopBtn.style.opacity = 1;
+            if (window.innerWidth > 992){
+                brandLogo.classList.add('navbar-scrolled-logo');
+                brand.classList.add('navbar-scrolled-brand');
+                brandContainer.classList.add('navbar-scrolled-brand-container');
+            }
         } 
-        else if (window.scrollY <= 10 || window.innerWidth < 992) {
+        else {
+            backToTopBtn.style.visibility = "hidden";
+            backToTopBtn.style.opacity = 0;
             brandLogo.classList.remove('navbar-scrolled-logo');
             brand.classList.remove('navbar-scrolled-brand');
             brandContainer.classList.remove('navbar-scrolled-brand-container');
-            backToTopBtn.style.visibility = "hidden";
-            backToTopBtn.style.opacity = 0;
         }
     });
 }
 
+//Change focus on payment-card (form)
+function paymentCard(){
+    const tarjetaInputs = document.querySelectorAll('.payment-card-inputs');
+    for (let i = 0; i < tarjetaInputs.length; i++) {
+        tarjetaInputs[i].addEventListener('input', function () {
+            this.value.length === this.maxLength && tarjetaInputs[i + 1].focus();
+        });
+    }
+}
 // Carga de productos desde archivo JSON (TO DO)
 // let listaDeProductos = [];
 // document.addEventListener('DOMContentLoaded', () => {
@@ -35,6 +46,8 @@ function navbarScrolled() {
 //         })
 //     .catch(error => console.error('Error al cargar los vinos:', error));
 // });
+
+// Carga de productos y carrito
 
 class Producto{
     constructor(id, nombre, tipo, precio, imagen, stock, cantidadEnCarrito){
@@ -184,12 +197,7 @@ class Carrito{
 
     verificarStock(producto){
         const error = document.getElementById(`prod-stock-error-${producto.id}`);
-        if(producto.cantidadEnCarrito == producto.stock){
-            error.style.visibility = "visible";
-        }
-        else {
-            error.style.visibility = "hidden";
-        }
+        producto.cantidadEnCarrito == producto.stock ? error.style.visibility = "visible" : error.style.visibility = "hidden";
     }
 
     calcularTotalProductos(){
@@ -215,9 +223,8 @@ class Carrito{
 
     recuperarStorage(){
         let listaAux = [];
-        let listaCarritoJSON = localStorage.getItem("listaCarrito");
-        let listaCarritoJS = JSON.parse(listaCarritoJSON);
-        listaCarritoJS.forEach( producto => {
+        let listaCarritoLocalStorage = JSON.parse(localStorage.getItem("listaCarrito"));
+        listaCarritoLocalStorage.forEach( producto => {
             let nuevoProducto = new Producto(...Object.values(producto));
             listaAux.push(nuevoProducto);
         })
@@ -288,7 +295,7 @@ class Carrito{
             </div>
             <div class="d-flex justify-content-between pe-3">
                 <div>
-                    <button type="button" class="btn btn-dark cart-btn-final">Finalizar compra</button>
+                    <button type="button" class="btn btn-dark cart-btn-final" data-bs-toggle="modal" data-bs-target="#finalizarCompra">Finalizar compra</button>
                 </div>
                 <div>
                     <button type="button" id="empty-cart-btn" class="btn btn-light cart-btn-empty">Vaciar carrito</button>
@@ -297,9 +304,44 @@ class Carrito{
 
         const btn_ec = document.getElementById("empty-cart-btn");
         btn_ec.addEventListener("click", () => {
+            Swal.fire({
+                title: '¿Quieres eliminar todos los productos del carrito?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ab2143',
+                cancelButtonColor: '#acaaaa',
+                cancelButtonText: 'NO',
+                confirmButtonText: 'SI'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.vaciar();
+                    this.guardarEnStorage();
+                    this.mostrarEnDOM();
+                    Swal.fire({
+                        text: 'Productos eliminados del carrito',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false,
+                    })
+                }
+            })
+        });
+
+        const payment_form = document.getElementById("formulario-pago");
+        payment_form.addEventListener("submit", (e) => {
+            e.preventDefault();
             this.vaciar();
             this.guardarEnStorage();
             this.mostrarEnDOM();
+            Swal.fire({
+                text: 'Pago procesado con éxito',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2000,
+            }).then(() => {
+                location.reload();
+            });
         });
     }
 
@@ -326,10 +368,12 @@ class Carrito{
 
 }
 
-navbarScrolled();
+pageScrolled();
+paymentCard();
 const carrito = new Carrito();
 const controladorP = new ProductoController();
 controladorP.cargarDatos();
 controladorP.mostrarEnDOM();
 carrito.recuperarStorage();
 carrito.mostrarEnDOM();
+

@@ -10,7 +10,7 @@
 
    .................................
 */
-/*RESET HTML, BOOTSTRAP STYLES*/
+/*RESET HTML, BOOTSTRAP, SWEET ALERT STYLES*/
 * {
     margin: 0;
     padding: 0;
@@ -35,6 +35,24 @@ ul {
     padding: 0;
     margin: 0;
 }
+
+.swal2-popup {
+  background-color: white !important;
+}
+
+.swal2-title, .swal2-content {
+  color: #5f5f5f !important;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+} 
+
+.swal2-title {
+  font-size: 20px !important;
+} 
+
+.swal2-content {
+  font-size: 18px !important;
+} 
   
 /* .................................
 
@@ -269,6 +287,51 @@ ul {
 
 .cart-total h6 {
   font-size: 22px;
+  font-weight: 600;
+}
+
+.form-comprar-btn {
+  font-size: 16px;
+  background-color: #ab2143;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.form-comprar-btn:hover {
+  background-color: #821a34;
+  border: none;
+}
+
+.form-finalizar-compra-inputs, .form-finalizar-compra-inputs input, .form-select{
+  font-size: 13px;
+}
+
+.form-finalizar-compra-inputs input:focus {
+  box-shadow: 0 0 0.25rem #790f29;
+  border-color: #eba1b3;
+}
+
+.form-select:focus {
+  box-shadow: 0 0 0.25rem #790f29;
+  border-color: #eba1b3;
+}
+
+.news-checkbox:checked {
+  background-color: #790f29;
+  border-color: #dadada !important;
+}
+
+.news-checkbox:focus {
+  border-color: #dadada !important;
+}
+
+.news-checkbox:active {
+  border-color: #dadada !important;
+}
+
+.form-finalizar-compra-inputs label, .form-select {
   font-weight: 600;
 }
 
@@ -550,9 +613,6 @@ section {
   }
 }
 
-.modal {
-  color: #706e6e;
-}
 .modal-title {
   font-size: 14px;
   font-weight: 600;
@@ -654,11 +714,6 @@ section {
     left: 1.25em;
     visibility: visible;
   }
-}
-
-body.modal-open {
-  overflow: auto !important;
-  padding-right: 0 !important;
 }
 
 /* ..................
@@ -774,6 +829,7 @@ body.modal-open {
   background-image: url('../img/wineshop1.jpg');
   background-attachment: fixed;
   background-size: cover;
+  background-position: center top;
   height: 75vh;
 }
 
