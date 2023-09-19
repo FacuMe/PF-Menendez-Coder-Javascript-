@@ -34,18 +34,6 @@ function paymentCard(){
         });
     }
 }
-// Carga de productos desde archivo JSON (TO DO)
-// let listaDeProductos = [];
-// document.addEventListener('DOMContentLoaded', () => {
-    
-//     fetch('products.json')
-//         .then(response => response.json())
-//         .then(data => {
-//             listaDeProductos = data;
-//             mostrarTodosLosProductos(listaDeProductos);
-//         })
-//     .catch(error => console.error('Error al cargar los vinos:', error));
-// });
 
 // Carga de productos y carrito
 
@@ -145,6 +133,14 @@ class ProductoController{
         this.agregar(new Producto(10, "Vino Uvita Fiesta", "Tinto", 3500, "./img/product1.jpg", 1, 0));
         this.agregar(new Producto(11, "Vino Concha y Toro", "Blanco", 6000, "./img/product2.jpg", 2, 0));
         this.agregar(new Producto(12, "Vino Pomery", "Espumante", 8000, "./img/product3.jpg", 3, 0));
+
+        // Carga de productos desde archivo JSON (TO DO)
+//     fetch('products.json')
+//         .then(response => response.json())
+//         .then(data => {
+//             this.listaProductos = data;
+//         })
+//     .catch(error => console.error('Error al cargar productos', error));
     }
 
     mostrarEnDOM(){
