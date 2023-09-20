@@ -111,6 +111,7 @@ class Producto{
 class ProductoController{
     constructor(){
         this.listaProductos = this.listaProductos;
+        this.listaFiltrada = this.listaFiltrada;
     }
 
     agregar(producto){
@@ -133,31 +134,86 @@ class ProductoController{
         this.agregar(new Producto(10, "Vino Uvita Fiesta", "Tinto", 3500, "./img/product1.jpg", 1, 0));
         this.agregar(new Producto(11, "Vino Concha y Toro", "Blanco", 6000, "./img/product2.jpg", 2, 0));
         this.agregar(new Producto(12, "Vino Pomery", "Espumante", 8000, "./img/product3.jpg", 3, 0));
-
+        this.listaFiltrada = this.listaProductos;
         // Carga de productos desde archivo JSON (TO DO)
-//     fetch('products.json')
-//         .then(response => response.json())
-//         .then(data => {
-//             this.listaProductos = data;
-//         })
-//     .catch(error => console.error('Error al cargar productos', error));
+        // fetch('products.json')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         this.listaProductos = data;
+        //     })
+        // .catch(error => console.error('Error al cargar productos', error));
     }
 
-    mostrarEnDOM(){
-        const productosContainer = document.getElementById("productos-container");
-        this.listaProductos.forEach( producto => {
-            productosContainer.innerHTML += producto.descripcionProducto();
-        });
+    buscarId(id){
+        return this.listaProductos.find(producto => producto.id == id);
+    }
 
-        this.listaProductos.forEach( producto => {
-            const btn_ap = document.getElementById(`ap-${producto.id}`);
-            btn_ap.addEventListener("click", () => {
-                carrito.agregar(producto);
-                carrito.guardarEnStorage();
-                carrito.mostrarEnDOM();
-            });
-        });
+    filtrarPorNombre(nombre){
+        return this.listaFiltrada.filter(producto =>
+            producto.nombre.toLowerCase().includes(nombre.toLowerCase())
+        );
+    }
 
+    filtrarPorTipo(tipo){
+        return this.listaFiltrada.filter(producto => producto.tipo.toLowerCase() === tipo.toLowerCase());
+    }
+
+    filtrarPorPrecio(min, max) {
+        return this.listaFiltrada.filter(producto => {
+            if (min === "" && max === "") {
+                return true;
+            } else if (min === "") {
+                return producto.precio <= max;
+            } else if (max === "") {
+                return producto.precio >= min;
+            } else {
+                return producto.precio >= min && producto.precio <= max;
+            }
+        });
+    }
+
+    aplicarFiltros(){
+        this.listaFiltrada = this.listaProductos;
+        const nombre = document.getElementById("filtro-nombre").value;
+        const tipo = document.getElementById("filtro-tipo").value;
+        const min = document.getElementById("filtro-precio-min").value;
+        const max = document.getElementById("filtro-precio-max").value;
+
+        if (nombre) {
+            this.listaFiltrada = this.filtrarPorNombre(nombre);
+        }
+        if (tipo) {
+            this.listaFiltrada = this.filtrarPorTipo(tipo);
+        }
+        if (min || max) {
+            this.listaFiltrada = this.filtrarPorPrecio(min, max);
+        }
+        this.cargarProductos();
+    }
+
+    limpiarFiltros() {
+        this.listaFiltrada = this.listaProductos;
+        this.cargarProductos();
+        document.getElementById("filtro-nombre").value = "";
+        document.getElementById("filtro-tipo").value = "";
+        document.getElementById("filtro-precio-min").value = "";
+        document.getElementById("filtro-precio-max").value = "";
+    }
+
+    cargarBotonesFiltro(){
+        const aplicarFiltrosBtn = document.getElementById("aplicar-filtros");
+        const limpiarFiltrosBtn = document.getElementById("limpiar-filtros");
+
+        aplicarFiltrosBtn.addEventListener("click", () => {
+            this.aplicarFiltros();
+        });
+          
+        limpiarFiltrosBtn.addEventListener("click", () => {
+            this.limpiarFiltros();
+        });
+    }
+
+    cargarModal(){
         const goToCartBtn = document.getElementById("go-to-cart-btn");
         const cartToggleBtn = document.getElementById("cart-toggle-btn");
         goToCartBtn.addEventListener("click", () => {
@@ -165,10 +221,29 @@ class ProductoController{
         });
     }
 
-    buscarId(id){
-        return this.listaProductos.find(producto => producto.id == id);
+    cargarProductos(){
+        const productosContainer = document.getElementById("productos-container");
+        productosContainer.innerHTML = "";
+
+        this.listaFiltrada.forEach( producto => {
+            productosContainer.innerHTML += producto.descripcionProducto();
+        });
+
+        this.listaFiltrada.forEach( producto => {
+            const btn_ap = document.getElementById(`ap-${producto.id}`);
+            btn_ap.addEventListener("click", () => {
+                carrito.agregar(producto);
+                carrito.guardarEnStorage();
+                carrito.mostrarEnDOM();
+            });
+        });
     }
 
+    mostrarEnDOM(){
+        this.cargarBotonesFiltro();
+        this.cargarModal();
+        this.cargarProductos();
+    }
 }
 
 class Carrito{

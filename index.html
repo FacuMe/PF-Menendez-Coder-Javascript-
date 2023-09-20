@@ -101,14 +101,14 @@
           <div class="modal-body d-flex flex-column justify-content-center align-items-center">
             <div class="row g-3 justify-content-start form-finalizar-compra-inputs">
               <div class="col-12 dropdown">
-                <select class="form-select" name="tarjeta" id="tarjeta" required>
+                <select class="form-select payment-select-form" name="tarjeta" id="tarjeta" required>
                   <option value="" selected disabled>Seleccione Tarjeta</option>
                   <option value="debito">Tarjeta de Débito</option>
                   <option value="credito">Tarjeta de Crédito</option>
                 </select>
               </div>
               <div class="col-12 dropdown">
-                <select class="form-select" name="tipoTarjeta" id="tipoTarjeta" required>
+                <select class="form-select payment-select-form" name="tipoTarjeta" id="tipoTarjeta" required>
                   <option value="" selected disabled>Seleccione Tipo de Tarjeta</option>
                   <option value="visa">Visa</option>
                   <option value="mastercard">Mastercard</option>
@@ -205,9 +205,25 @@
             <p>Espumantes</p>
           </div>
         </div>
+        <!-- filtro -->
+        <div id="filtros-container" class="mb-4 d-flex flex-column justify-content-center gap-3 filtros-container">
+          <input type="text" id="filtro-nombre" class="form-control filter-input" placeholder="Nombre">
+          <select id="filtro-tipo" class="form-select filter-select">
+            <option value="">Todas las categorías</option>
+            <option value="tinto">Tinto</option>
+            <option value="blanco">Blanco</option>
+            <option value="rosado">Rosado</option>
+            <option value="espumante">Espumante</option>
+          </select>
+          <input type="number" id="filtro-precio-min" class="form-control filter-input" placeholder="Precio mínimo">
+          <input type="number" id="filtro-precio-max" class="form-control filter-input" placeholder="Precio máximo">
+          <button id="aplicar-filtros" class="btn">Aplicar Filtros</button>
+          <button id="limpiar-filtros" class="btn">Limpiar Filtros</button>
+        </div>
+        <!-- productos -->
         <div id="productos-container" class="row row-cols-2 row-cols-sm-4 justify-content-between align-items-center ms-sm-5 me-sm-5 ps-lg-5 pe-lg-5">
         </div>
-
+        <!-- modal agregado al carrito -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
