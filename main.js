@@ -1,4 +1,4 @@
-//Change navbar when scrolled
+//Cambiar navbar al hacer scroll
 function pageScrolled(){
     const brandLogo = document.querySelector('.brand-logo');
     const brand = document.querySelector('.brand');
@@ -25,12 +25,12 @@ function pageScrolled(){
     });
 }
 
-//Change focus on payment-card (form)
+//Cambiar enfoque en inputs de formulario de compra
 function paymentCard(){
     const tarjetaInputs = document.querySelectorAll('.payment-card-inputs');
     for (let i = 0; i < tarjetaInputs.length; i++) {
-        tarjetaInputs[i].addEventListener('input', function () {
-            this.value.length === this.maxLength && tarjetaInputs[i + 1].focus();
+        tarjetaInputs[i].addEventListener('input', () => {
+            tarjetaInputs[i].value.length === tarjetaInputs[i].maxLength && tarjetaInputs[i + 1].focus();
         });
     }
 }
