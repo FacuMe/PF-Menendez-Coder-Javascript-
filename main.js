@@ -139,10 +139,13 @@ class ProductoController{
         fetch('products.json')
             .then(response => response.json())
             .then(data => {
-                this.listaProductos = data;
+                data.forEach(producto => {
+                    let nuevoProducto = new Producto(...Object.values(producto));
+                    this.agregar(nuevoProducto);
+                })
             })
         .catch(error => console.error('Error al cargar productos', error));
-        
+
         this.listaFiltrada = this.listaProductos;
     }
 
