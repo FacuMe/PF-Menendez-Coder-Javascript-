@@ -443,12 +443,21 @@ class Carrito{
 
 }
 
-pageScrolled();
-paymentCard();
-const carrito = new Carrito();
-const controladorP = new ProductoController();
-controladorP.cargarDatos();
-controladorP.mostrarEnDOM();
-carrito.recuperarStorage();
-carrito.mostrarEnDOM();
-
+// pageScrolled();
+// paymentCard();
+// const carrito = new Carrito();
+// const controladorP = new ProductoController();
+// controladorP.cargarDatos();
+// controladorP.mostrarEnDOM();
+// carrito.recuperarStorage();
+// carrito.mostrarEnDOM();
+window.addEventListener('load', () => {
+    pageScrolled();
+    paymentCard();
+    const controladorP = new ProductoController();
+    controladorP.cargarDatos();
+    controladorP.mostrarEnDOM();
+    const carrito = new Carrito();
+    carrito.recuperarStorage();
+    carrito.mostrarEnDOM();
+});
