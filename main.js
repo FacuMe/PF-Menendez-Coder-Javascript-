@@ -142,11 +142,10 @@ class ProductoController{
                 data.forEach(producto => {
                     let nuevoProducto = new Producto(...Object.values(producto));
                     this.agregar(nuevoProducto);
-                })
+                });
+                this.listaFiltrada = this.listaProductos;
             })
         .catch(error => console.error('Error al cargar productos', error));
-
-        this.listaFiltrada = this.listaProductos;
     }
 
     buscarId(id){
