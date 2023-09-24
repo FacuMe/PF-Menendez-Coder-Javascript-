@@ -122,26 +122,28 @@ class ProductoController{
 
     cargarDatos(){
         this.listaProductos = [];
-        this.agregar(new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 1, 0));
-        this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product2.jpg", 2, 0));
-        this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product3.jpg", 3, 0));
-        this.agregar(new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product4.jpg", 4, 0));
-        this.agregar(new Producto(5, "Vino Durigutti Cabernet Franc", "Tinto", 3000, "./img/product5.jpg", 5, 0));
-        this.agregar(new Producto(6, "Vino Durigutti Tempranillo", "Tinto", 3500, "./img/product1.jpg", 1, 0));
-        this.agregar(new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product2.jpg", 2, 0));
-        this.agregar(new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product3.jpg", 3, 0));
-        this.agregar(new Producto(9, "Vino Termidor Tinto", "Tinto", 3000, "./img/product5.jpg", 5, 0));
-        this.agregar(new Producto(10, "Vino Uvita Fiesta", "Tinto", 3500, "./img/product1.jpg", 1, 0));
-        this.agregar(new Producto(11, "Vino Concha y Toro", "Blanco", 6000, "./img/product2.jpg", 2, 0));
-        this.agregar(new Producto(12, "Vino Pomery", "Espumante", 8000, "./img/product3.jpg", 3, 0));
+        // this.agregar(new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 1, 0));
+        // this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product2.jpg", 2, 0));
+        // this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product3.jpg", 3, 0));
+        // this.agregar(new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product4.jpg", 4, 0));
+        // this.agregar(new Producto(5, "Vino Durigutti Cabernet Franc", "Tinto", 3000, "./img/product5.jpg", 5, 0));
+        // this.agregar(new Producto(6, "Vino Durigutti Tempranillo", "Tinto", 3500, "./img/product1.jpg", 1, 0));
+        // this.agregar(new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product2.jpg", 2, 0));
+        // this.agregar(new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product3.jpg", 3, 0));
+        // this.agregar(new Producto(9, "Vino Termidor Tinto", "Tinto", 3000, "./img/product5.jpg", 5, 0));
+        // this.agregar(new Producto(10, "Vino Uvita Fiesta", "Tinto", 3500, "./img/product1.jpg", 1, 0));
+        // this.agregar(new Producto(11, "Vino Concha y Toro", "Blanco", 6000, "./img/product2.jpg", 2, 0));
+        // this.agregar(new Producto(12, "Vino Pomery", "Espumante", 8000, "./img/product3.jpg", 3, 0));
+
+          // Carga de productos desde archivo JSON (TO DO)
+        fetch('products.json')
+            .then(response => response.json())
+            .then(data => {
+                this.listaProductos = data;
+            })
+        .catch(error => console.error('Error al cargar productos', error));
+        
         this.listaFiltrada = this.listaProductos;
-        // Carga de productos desde archivo JSON (TO DO)
-        // fetch('products.json')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         this.listaProductos = data;
-        //     })
-        // .catch(error => console.error('Error al cargar productos', error));
     }
 
     buscarId(id){
