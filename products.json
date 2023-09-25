@@ -3,7 +3,7 @@
       "id":1,
       "nombre": "Vino Reserva",
       "tipo": "Tinto",
-      "precio": "$2000",
+      "precio": "2000",
       "imagen": "./img/product1.jpg",
       "stock": 1,
       "cantidadEnCarrito": 0
@@ -12,7 +12,7 @@
       "id":2,
       "nombre": "Vino Premium",
       "tipo": "Blanco",
-      "precio": "$1800",
+      "precio": "1800",
       "imagen": "./img/product2.jpg",
       "stock": 2,
       "cantidadEnCarrito": 0
@@ -21,7 +21,7 @@
       "id":3,
       "nombre": "Vino Elegante",
       "tipo": "Rosado",
-      "precio": "$1500",
+      "precio": "1500",
       "imagen": "./img/product3.jpg",
       "stock": 3,
       "cantidadEnCarrito": 0
@@ -30,7 +30,7 @@
       "id":4,
       "nombre": "Vino Gran Enemigo",
       "tipo": "Tinto",
-      "precio": "$4000",
+      "precio": "4000",
       "imagen": "./img/product4.jpg",
       "stock": 4,
       "cantidadEnCarrito": 0
@@ -39,7 +39,7 @@
       "id":5,
       "nombre": "Vino Durigutti Cabernet Franc",
       "tipo": "Tinto",
-      "precio": "$3000",
+      "precio": "3000",
       "imagen": "./img/product5.jpg",
       "stock": 5,
       "cantidadEnCarrito": 0
@@ -48,7 +48,7 @@
       "id":6,
       "nombre": "Vino Durigutti Tempranillo",
       "tipo": "Tinto",
-      "precio": "$3500",
+      "precio": "3500",
       "imagen": "./img/product1.jpg",
       "stock": 1,
       "cantidadEnCarrito": 0
@@ -57,7 +57,7 @@
       "id":7,
       "nombre": "Vino Chardonnay",
       "tipo": "Blanco",
-      "precio": "$3000",
+      "precio": "3000",
       "imagen": "./img/product2.jpg",
       "stock": 2,
       "cantidadEnCarrito": 0
@@ -66,7 +66,7 @@
       "id":8,
       "nombre": "Vino Extra Premium",
       "tipo": "Espumante",
-      "precio": "$8000",
+      "precio": "8000",
       "imagen": "./img/product3.jpg",
       "stock": 3,
       "cantidadEnCarrito": 0
@@ -75,7 +75,7 @@
       "id":9,
       "nombre": "Vino Termidor",
       "tipo": "Tinto",
-      "precio": "$3000",
+      "precio": "3000",
       "imagen": "./img/product4.jpg",
       "stock": 4,
       "cantidadEnCarrito": 0
@@ -84,7 +84,7 @@
       "id":10,
       "nombre": "Vino Uvita Fiesta",
       "tipo": "Blanco",
-      "precio": "$3500",
+      "precio": "3500",
       "imagen": "./img/product5.jpg",
       "stock": 5,
       "cantidadEnCarrito": 0
@@ -93,7 +93,7 @@
       "id":11,
       "nombre": "Vino Concha y Toro",
       "tipo": "Tinto",
-      "precio": "$6000",
+      "precio": "6000",
       "imagen": "./img/product1.jpg",
       "stock": 1,
       "cantidadEnCarrito": 0
@@ -102,7 +102,7 @@
       "id":12,
       "nombre": "Vino Pomery",
       "tipo": "Espumante",
-      "precio": "$8000",
+      "precio": "8000",
       "imagen": "./img/product2.jpg",
       "stock": 2,
       "cantidadEnCarrito": 0

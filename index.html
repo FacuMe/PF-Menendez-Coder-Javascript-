@@ -86,7 +86,11 @@
         <div id="subtotal-carrito-container" class="cart-subtotal d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-1">
         </div>
       </div>
-      <div id="total-carrito-container">
+      <div>
+        <div id="envio-carrito-container">
+        </div>
+        <div id="total-carrito-container">
+        </div>
       </div>
     </div>
   </div>
@@ -147,7 +151,7 @@
               </div>
               <div class="col-12">
                 <label for="email">Email</label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Ej. myemail@example.com" autocomplete="off" maxlength="60" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Ej. myemail@example.com" autocomplete="off" maxlength="60" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$" required>
                 <div class="invalid-feedback">
                   Ingresá una dirección de correo electrónico válida.
                 </div>
@@ -206,7 +210,7 @@
           </div>
         </div>
         <!-- filtro -->
-        <div id="filtros-container" class="mb-4 d-flex flex-column justify-content-center gap-3 filtros-container">
+        <div id="filtros-container" class="mb-5 d-flex flex-column justify-content-center gap-3 filtros-container">
           <input type="text" id="filtro-nombre" class="form-control filter-input" placeholder="Nombre">
           <select id="filtro-tipo" class="form-select filter-select">
             <option value="">Todas las categorías</option>
@@ -221,7 +225,7 @@
           <button id="limpiar-filtros" class="btn">Limpiar Filtros</button>
         </div>
         <!-- productos -->
-        <div id="productos-container" class="row row-cols-2 row-cols-sm-4 justify-content-between align-items-center ms-sm-5 me-sm-5 ps-lg-5 pe-lg-5">
+        <div id="productos-container" class="row row-cols-2 row-cols-sm-4 flex-wrap align-items-center ms-sm-5 me-sm-5 ps-lg-5 pe-lg-5">
         </div>
         <!-- modal agregado al carrito -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

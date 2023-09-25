@@ -30,7 +30,9 @@ function paymentCard(){
     const tarjetaInputs = document.querySelectorAll('.payment-card-inputs');
     for (let i = 0; i < tarjetaInputs.length; i++) {
         tarjetaInputs[i].addEventListener('input', () => {
-            tarjetaInputs[i].value.length === tarjetaInputs[i].maxLength && tarjetaInputs[i + 1].focus();
+            if(tarjetaInputs[i+1]){
+                tarjetaInputs[i].value.length === tarjetaInputs[i].maxLength && tarjetaInputs[i + 1].focus();
+            }
         });
     }
 }
@@ -110,8 +112,8 @@ class Producto{
 
 class ProductoController{
     constructor(){
-        this.listaProductos = this.listaProductos;
-        this.listaFiltrada = this.listaFiltrada;
+        this.listaProductos = [];
+        this.listaFiltrada = [];
     }
 
     agregar(producto){
@@ -121,7 +123,7 @@ class ProductoController{
     }
 
     cargarDatos(){
-        this.listaProductos = [];
+        //carga de pruductos manual
         // this.agregar(new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 1, 0));
         // this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product2.jpg", 2, 0));
         // this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product3.jpg", 3, 0));
@@ -134,17 +136,18 @@ class ProductoController{
         // this.agregar(new Producto(10, "Vino Uvita Fiesta", "Tinto", 3500, "./img/product1.jpg", 1, 0));
         // this.agregar(new Producto(11, "Vino Concha y Toro", "Blanco", 6000, "./img/product2.jpg", 2, 0));
         // this.agregar(new Producto(12, "Vino Pomery", "Espumante", 8000, "./img/product3.jpg", 3, 0));
+        // this.listaFiltrada = this.listaProductos;
 
-          // Carga de productos desde archivo JSON (TO DO)
+        // Carga de productos desde archivo JSON
         fetch('products.json')
             .then(response => response.json())
-            .then(data => {
-                this.listaProductos = data;
-                // data.forEach(producto => {
-                //     let nuevoProducto = new Producto(...Object.values(producto));
-                //     this.agregar(nuevoProducto);
-                // });
+            .then(response => {
+                response.forEach(producto => {
+                    let nuevoProducto = new Producto(...Object.values(producto));
+                    this.agregar(nuevoProducto);
+                });
                 this.listaFiltrada = this.listaProductos;
+                this.mostrarEnDOM();
             })
         .catch(error => console.error('Error al cargar productos', error));
     }
@@ -168,11 +171,11 @@ class ProductoController{
             if (min === "" && max === "") {
                 return true;
             } else if (min === "") {
-                return producto.precio <= max;
+                return Math.round(producto.precio) <= Math.round(max);
             } else if (max === "") {
-                return producto.precio >= min;
+                return Math.round(producto.precio) >= Math.round(min);
             } else {
-                return producto.precio >= min && producto.precio <= max;
+                return Math.round(producto.precio) >= Math.round(min) && Math.round(producto.precio) <= Math.round(max);
             }
         });
     }
@@ -230,18 +233,22 @@ class ProductoController{
         const productosContainer = document.getElementById("productos-container");
         productosContainer.innerHTML = "";
 
-        this.listaFiltrada.forEach( producto => {
-            productosContainer.innerHTML += producto.descripcionProducto();
-        });
-
-        this.listaFiltrada.forEach( producto => {
-            const btn_ap = document.getElementById(`ap-${producto.id}`);
-            btn_ap.addEventListener("click", () => {
-                carrito.agregar(producto);
-                carrito.guardarEnStorage();
-                carrito.mostrarEnDOM();
+        if(this.listaFiltrada.length === 0){
+            productosContainer.innerHTML = '<div class="d-flex justify-content-center w-100 pt-4"><h4 class="filter-error p-3">No existen elementos que coincidan con los criterios de búsqueda</h4></div>';
+        }
+        else{
+            this.listaFiltrada.forEach( producto => {
+                productosContainer.innerHTML += producto.descripcionProducto();
             });
-        });
+            this.listaFiltrada.forEach( producto => {
+                const btn_ap = document.getElementById(`ap-${producto.id}`);
+                btn_ap.addEventListener("click", () => {
+                    carrito.agregar(producto);
+                    carrito.guardarEnStorage();
+                    carrito.mostrarEnDOM();
+                });
+            });
+        }
     }
 
     mostrarEnDOM(){
@@ -254,6 +261,10 @@ class ProductoController{
 class Carrito{
     constructor(){
         this.listaCarrito = [];
+        this.codigoPostal = this.codigoPostal;
+        this.costoEnvio = 0;
+        this.envioExpress = this.envioExpress;
+        this.costoEnvioExpress = 1500;
     }
 
     agregar(productoAlCarrito){
@@ -293,18 +304,36 @@ class Carrito{
     }
 
     guardarEnStorage(){
-        let listaCarritoJSON = JSON.stringify(this.listaCarrito);
-        localStorage.setItem("listaCarrito", listaCarritoJSON);
+        localStorage.setItem("listaCarrito", JSON.stringify(this.listaCarrito));
+        const envioData = {
+            codigoPostal: this.codigoPostal,
+            costoEnvio: this.costoEnvio,
+            envioExpress: this.envioExpress
+        };
+        localStorage.setItem("datosEnvio", JSON.stringify(envioData));
     }
 
     recuperarStorage(){
         let listaAux = [];
         let listaCarritoLocalStorage = JSON.parse(localStorage.getItem("listaCarrito"));
-        listaCarritoLocalStorage.forEach( producto => {
-            let nuevoProducto = new Producto(...Object.values(producto));
-            listaAux.push(nuevoProducto);
-        })
+        if (listaCarritoLocalStorage !== null) {
+            listaCarritoLocalStorage.forEach(producto => {
+                let nuevoProducto = new Producto(...Object.values(producto));
+                listaAux.push(nuevoProducto);
+            });
+        }
         this.listaCarrito = listaAux;
+
+        let envioData = JSON.parse(localStorage.getItem("datosEnvio"));
+        if (envioData) {
+            this.codigoPostal = envioData.codigoPostal;
+            this.costoEnvio = envioData.costoEnvio;
+            this.envioExpress = envioData.envioExpress;
+        } else {
+            this.codigoPostal = ""; 
+            this.costoEnvio = 0;
+            this.envioExpress = false; 
+        }
     }
 
     cargarProductosDelCarrito(){
@@ -358,8 +387,102 @@ class Carrito{
     cargarSubtotalProductos(){
         const subtotalCarritoContainer = document.getElementById("subtotal-carrito-container");
         subtotalCarritoContainer.innerHTML = `
-            <h6>Subtotal (sin envío): </h6>
+            <h6>Subtotal: </h6>
             <p id="subtotal-carrito">$${this.calcularTotalProductos()}</p>`;
+    }
+
+    calcularEnvio(){
+        let codigoPostalIngresado = document.getElementById('shipping').value;
+        const error = document.getElementById('postal-code-error');
+
+        if(isNaN(codigoPostalIngresado) || codigoPostalIngresado < 1000 || codigoPostalIngresado > 2000){
+            error.style.display = "block";
+        }
+        else{
+            error.style.display = "none";
+            this.codigoPostal = codigoPostalIngresado;
+            this.costoEnvio = 0;
+            if (this.codigoPostal >= 1700 && this.codigoPostal <= 1800) {
+                this.costoEnvio = 500;
+            } 
+            else if ((this.codigoPostal >= 1600 && this.codigoPostal <= 1699) || (this.codigoPostal >= 1801 && this.codigoPostal <= 1900)) {
+                this.costoEnvio = 800;
+            }
+            else {
+                this.costoEnvio = 1000;
+            }
+            this.guardarEnStorage();
+            this.mostrarEnDOM();
+        }
+    }
+
+    actualizarEnvioExpress(){
+        let envioExpressBtn = document.getElementById("envio-express");
+        if(envioExpressBtn.checked){
+            this.envioExpress = true;
+        }
+        else{
+            this.envioExpress = false;
+        }
+    }
+
+    calcularEnvioExpress(){
+        if(this.envioExpress){
+            return this.costoEnvioExpress;
+        } 
+        else{
+            return 0;
+        }
+    }
+
+    cargarEnvio(){
+        const envioCarritoContainer = document.getElementById("envio-carrito-container");
+        envioCarritoContainer.innerHTML =   `<div id="envio-normal-carrito-container">
+                                                <div class="cart-shipping d-flex justify-content-start align-items-center pe-5 pt-4 pb-2 mt-2 mb-1">
+                                                    <i class="fa fa-truck col-1" aria-hidden="true"></i>
+                                                    <input type="text" id="shipping" class="form-control col-2" placeholder="Código Postal" maxlength="4" pattern="[0-9]" autocomplete="off">
+                                                    <button id="calcular-envio-btn" class="btn shipping-btn ms-3 col-4">Calcular envío</button>
+                                                </div>
+                                                <p id="postal-code-error" class="col-7 mb-2 postal-code-error">Introduce un código postal válido (1000 a 2000) para calcular, sólo Buenos Aires y C.A.B.A.</p>
+                                            </div>
+                                            <div id="subtotal-envio-carrito-container" class="cart-subtotal d-flex justify-content-between align-items-center pe-5 pt-2mt-2">
+                                                <h6>Costo de envío: </h6>
+                                                <p id="subtotal-envio-carrito">$${this.costoEnvio}</p>
+                                            </div>
+                                            <p class="col-4 ms-1 postal-code">C.P.: ${this.codigoPostal}</p>
+                                            <div id="envio-express-carrito-container" class="cart-express-shipping d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-1">
+                                                <div class="d-flex justify-content-start align-items-center gap-3">
+                                                    <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                                                    <label for="envio-express">Envío express</label>
+                                                    <input type="checkbox" id="envio-express" class="express-shipping-btn" name="envio-express" value="">
+                                                </div>
+                                                <div>
+                                                    <p class="col-5">$${this.calcularEnvioExpress()}</p>
+                                                </div>
+                                            </div>`;
+
+        // document.getElementById('shipping').value = this.codigoPostal;
+        document.getElementById('envio-express').checked = this.envioExpress;
+
+        const calcularEnvioBtn = document.getElementById("calcular-envio-btn");
+        calcularEnvioBtn.addEventListener("click", () =>{
+            this.calcularEnvio();
+        });
+
+        const envioExpressBtn = document.getElementById("envio-express");
+        envioExpressBtn.addEventListener("change", () => {
+            this.actualizarEnvioExpress();
+            this.guardarEnStorage();
+            this.mostrarEnDOM();
+        });
+    }
+
+    calcularTotal(){
+        let total = this.calcularTotalProductos() + this.costoEnvio;
+        if (this.envioExpress) {
+            total += this.costoEnvioExpress;
+        }
+        return total;
     }
 
     cargarTotalFinalizarYVaciar(){
@@ -367,7 +490,7 @@ class Carrito{
         totalCarritoContainer.innerHTML = `
             <div class="cart-total d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-2">
                 <h6>Total: </h6>
-                <p id="total-carrito">$${this.calcularTotalProductos()}</p>
+                <p id="total-carrito">$${this.calcularTotal()}</p>
             </div>
             <div class="d-flex justify-content-between pe-3">
                 <div>
@@ -424,9 +547,11 @@ class Carrito{
     mostrarEnDOM(){
         const productosCarritoContainer = document.getElementById("productos-carrito-container");
         const subtotalCarritoContainer = document.getElementById("subtotal-carrito-container");
+        const envioCarritoContainer = document.getElementById("envio-carrito-container");
         const totalCarritoContainer = document.getElementById("total-carrito-container");
         productosCarritoContainer.innerHTML = "";
         subtotalCarritoContainer.innerHTML = "";
+        envioCarritoContainer.innerHTML = "";
         totalCarritoContainer.innerHTML = "";
 
         if (this.estaVacio()){
@@ -438,27 +563,19 @@ class Carrito{
         else {
             this.cargarProductosDelCarrito();
             this.cargarSubtotalProductos();
+            this.cargarEnvio();
             this.cargarTotalFinalizarYVaciar();
         }
     }
 
 }
 
-// pageScrolled();
-// paymentCard();
-// const carrito = new Carrito();
-// const controladorP = new ProductoController();
-// controladorP.cargarDatos();
-// controladorP.mostrarEnDOM();
-// carrito.recuperarStorage();
-// carrito.mostrarEnDOM();
+const controladorP = new ProductoController();
+const carrito = new Carrito();
 window.addEventListener('load', () => {
     pageScrolled();
     paymentCard();
-    const controladorP = new ProductoController();
     controladorP.cargarDatos();
-    controladorP.mostrarEnDOM();
-    const carrito = new Carrito();
     carrito.recuperarStorage();
     carrito.mostrarEnDOM();
 });
