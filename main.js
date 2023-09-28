@@ -404,6 +404,15 @@ class Carrito{
         }
     }
 
+    calcularEnvioExpress(){
+        if(this.envioExpress){
+            return this.costoEnvioExpress;
+        } 
+        else{
+            return 0;
+        }
+    }
+
     actualizarEnvioExpress(){
         let envioExpressBtn = document.getElementById("envio-express");
         if(envioExpressBtn.checked){
@@ -414,12 +423,13 @@ class Carrito{
         }
     }
 
-    calcularEnvioExpress(){
-        if(this.envioExpress){
-            return this.costoEnvioExpress;
-        } 
+    calcularEnvioBonificado(){
+        let subtotalEnvio = document.getElementById('subtotal-envio-carrito');
+        if(this.calcularTotalProductos() > 15000){
+            return "¡Envío Bonificado!";
+        }
         else{
-            return 0;
+            return this.costoEnvio;
         }
     }
 
@@ -435,7 +445,7 @@ class Carrito{
                                             </div>
                                             <div id="subtotal-envio-carrito-container" class="cart-subtotal d-flex justify-content-between align-items-center pe-5 pt-2mt-2">
                                                 <h6>Costo de envío: </h6>
-                                                <p id="subtotal-envio-carrito">$${this.costoEnvio}</p>
+                                                <p id="subtotal-envio-carrito">${this.calcularEnvioBonificado()}</p>
                                             </div>
                                             <p class="col-4 ms-1 postal-code">C.P.: ${this.codigoPostal}</p>
                                             <div id="envio-express-carrito-container" class="cart-express-shipping d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-1">
@@ -445,7 +455,7 @@ class Carrito{
                                                     <input type="checkbox" id="envio-express" class="express-shipping-btn" name="envio-express" value="">
                                                 </div>
                                                 <div>
-                                                    <p class="col-5">$${this.calcularEnvioExpress()}</p>
+                                                    <p class="col-5 express-shipping-value">$${this.calcularEnvioExpress()}</p>
                                                 </div>
                                             </div>`;
 
@@ -466,7 +476,10 @@ class Carrito{
     }
 
     calcularTotal(){
-        let total = this.calcularTotalProductos() + this.costoEnvio;
+        let total = this.calcularTotalProductos();
+        if(total <= 15000){
+            total += this.costoEnvio;
+        }
         if (this.envioExpress) {
             total += this.costoEnvioExpress;
         }
