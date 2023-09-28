@@ -142,6 +142,31 @@ ul {
   box-shadow: none;
 }
 
+.product-cart-counter-container {
+  height: 0.5rem;
+  width: 0.5rem;
+  font-size: 8px;
+  font-weight: 600;
+  border-radius: 50%;
+  background-color: #8b8b8b;
+  color: white;
+  margin-left: -0.7rem;
+  margin-bottom: 1rem;
+}
+
+.product-cart-counter-container p{
+  text-align: center !important;
+  padding-left: 1.5px;
+}
+
+@media screen and (min-width: 992px) {
+  .product-cart-counter-container {
+    height: 1rem;
+    width: 1rem;
+    font-size: 12px;
+  }
+}
+
 .nav-link {
   border-bottom: 2px solid transparent;
   transition: 0.3s ease-in-out;
@@ -246,6 +271,21 @@ ul {
   cursor: pointer;
 }
 
+.fa-history {
+  font-size: 20px;
+  animation: rotate-center 1.5s linear infinite reverse both;
+  visibility: hidden;
+}
+
+@keyframes rotate-center {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .cart-card-prod-quantity-input, .cart-card-prod-quantity-btn {
   width: 25px;
   height: 25px;
@@ -308,7 +348,7 @@ ul {
 }
 
 .postal-code {
-  font-size: 10px !important;
+  font-size: 11px !important;
 }
 
 .postal-code-error {

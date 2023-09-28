@@ -38,7 +38,6 @@ function paymentCard(){
 }
 
 // Carga de productos y carrito
-
 class Producto{
     constructor(id, nombre, tipo, precio, imagen, stock, cantidadEnCarrito){
         this.id = id;
@@ -103,6 +102,7 @@ class Producto{
                     </div>
                     <div class="col-1 cart-card-prod-delete-icon">
                         <i id="ep-${this.id}" class="fa fa-trash-o" aria-hidden="true"></i>
+                        <i id="delete-cart-item-update-${this.id}" class="fa fa-history" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -123,22 +123,6 @@ class ProductoController{
     }
 
     cargarDatos(){
-        //carga de pruductos manual
-        // this.agregar(new Producto(1, "Vino Reserva", "Tinto", 2000, "./img/product1.jpg", 1, 0));
-        // this.agregar(new Producto(2, "Vino Premium", "Blanco", 1800, "./img/product2.jpg", 2, 0));
-        // this.agregar(new Producto(3, "Vino Elegante", "Rosado", 1500, "./img/product3.jpg", 3, 0));
-        // this.agregar(new Producto(4, "Vino Gran Enemigo", "Tinto", 4000, "./img/product4.jpg", 4, 0));
-        // this.agregar(new Producto(5, "Vino Durigutti Cabernet Franc", "Tinto", 3000, "./img/product5.jpg", 5, 0));
-        // this.agregar(new Producto(6, "Vino Durigutti Tempranillo", "Tinto", 3500, "./img/product1.jpg", 1, 0));
-        // this.agregar(new Producto(7, "Vino Chardonnay", "Blanco", 6000, "./img/product2.jpg", 2, 0));
-        // this.agregar(new Producto(8, "Vino Extra Premium", "Espumante", 8000, "./img/product3.jpg", 3, 0));
-        // this.agregar(new Producto(9, "Vino Termidor Tinto", "Tinto", 3000, "./img/product5.jpg", 5, 0));
-        // this.agregar(new Producto(10, "Vino Uvita Fiesta", "Tinto", 3500, "./img/product1.jpg", 1, 0));
-        // this.agregar(new Producto(11, "Vino Concha y Toro", "Blanco", 6000, "./img/product2.jpg", 2, 0));
-        // this.agregar(new Producto(12, "Vino Pomery", "Espumante", 8000, "./img/product3.jpg", 3, 0));
-        // this.listaFiltrada = this.listaProductos;
-
-        // Carga de productos desde archivo JSON
         fetch('products.json')
             .then(response => response.json())
             .then(response => {
@@ -351,11 +335,15 @@ class Carrito{
 
     cargarBotonEliminarProducto(producto){
         const btn_ep = document.getElementById(`ep-${producto.id}`);
-
+        const btn_dciu = document.getElementById(`delete-cart-item-update-${producto.id}`);
+        
         btn_ep.addEventListener("click", () => {
-            this.eliminarProducto(producto.id);
-            this.guardarEnStorage();
-            this.mostrarEnDOM();
+            setTimeout(() => {
+                this.eliminarProducto(producto.id);
+                this.guardarEnStorage();
+                this.mostrarEnDOM();
+            }, 1200);
+            btn_dciu.style.visibility = "visible";
         });
     }
 
@@ -387,7 +375,7 @@ class Carrito{
     cargarSubtotalProductos(){
         const subtotalCarritoContainer = document.getElementById("subtotal-carrito-container");
         subtotalCarritoContainer.innerHTML = `
-            <h6>Subtotal: </h6>
+            <h6 class="pt-2">Subtotal: </h6>
             <p id="subtotal-carrito">$${this.calcularTotalProductos()}</p>`;
     }
 
@@ -489,7 +477,7 @@ class Carrito{
         const totalCarritoContainer = document.getElementById("total-carrito-container");
         totalCarritoContainer.innerHTML = `
             <div class="cart-total d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-2">
-                <h6>Total: </h6>
+                <h6 class="pt-2">Total: </h6>
                 <p id="total-carrito">$${this.calcularTotal()}</p>
             </div>
             <div class="d-flex justify-content-between pe-3">
@@ -544,6 +532,11 @@ class Carrito{
         });
     }
 
+    cargarContadorProductos(){
+        let contadorProductosCarrito = document.getElementById("product-cart-counter");
+        contadorProductosCarrito.innerHTML = `${this.listaCarrito.length}`;
+    }
+
     mostrarEnDOM(){
         const productosCarritoContainer = document.getElementById("productos-carrito-container");
         const subtotalCarritoContainer = document.getElementById("subtotal-carrito-container");
@@ -566,6 +559,7 @@ class Carrito{
             this.cargarEnvio();
             this.cargarTotalFinalizarYVaciar();
         }
+        this.cargarContadorProductos();
     }
 
 }
