@@ -334,6 +334,7 @@ ul {
 
 .progress {
   height: 6px;
+  width:100%;
   overflow: visible;
   margin-bottom: 10px;
 }
@@ -341,7 +342,6 @@ ul {
 .progress-bar {
   border-radius: 10px;
   background: #f48552;
-  width:100%;
   animation-name: progressBar;
   animation-iteration-count: 1;
   animation-duration: 1.5s;

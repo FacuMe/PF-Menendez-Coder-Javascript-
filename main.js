@@ -357,16 +357,16 @@ class Carrito{
             if (producto.cantidadEnCarrito < producto.stock) {
                 producto.agregarCantidad(1);
                 this.guardarEnStorage();
+                this.mostrarEnDOM();
             }
-            this.mostrarEnDOM();
         });
 
         btn_minus.addEventListener("click", () => {
             if (producto.cantidadEnCarrito > 1) {
                 producto.restarCantidad(1);
                 this.guardarEnStorage();
+                this.mostrarEnDOM();
             }
-            this.mostrarEnDOM();
         });
 
         cartQuantity.innerHTML = producto.cantidadEnCarrito;
@@ -436,7 +436,7 @@ class Carrito{
     }
 
     actualizarBarraDeProgreso(){
-        let barraDeProgreso = document.getElementById('progress');
+        let barraDeProgreso = document.getElementById('progress-bar');
         let anchoBarra = (this.calcularTotalProductos() / this.costoEnvioBonificado) * 100;
         barraDeProgreso.style.width = `${Math.min(anchoBarra, 100)}%`;
     }
@@ -454,7 +454,7 @@ class Carrito{
         const envioCarritoContainer = document.getElementById("envio-carrito-container");
         envioCarritoContainer.innerHTML =   `<div class="d-flex flex-column">
                                                 <div id="progress" class="progress">
-                                                    <div class="progress-bar"></div>
+                                                    <div id="progress-bar" class="progress-bar"></div>
                                                 </div>
                                                 <p id=""envio-bonificado" class="align-self-center envio-bonificado">${this.calcularEnvioBonificado()}</p>
                                             </div>
