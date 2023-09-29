@@ -156,13 +156,13 @@ ul {
 }
 
 .product-cart-counter-container p{
-  text-align: center center!important;
-  padding-left: 1.02rem;
+  text-align: center !important;
+  margin-left: 1.02rem;
 }
 
 @media screen and (min-width: 992px) {
   .product-cart-counter-container p{
-    padding-left: 1.1rem;
+    margin-left: 1.1rem;
   }
 }
 

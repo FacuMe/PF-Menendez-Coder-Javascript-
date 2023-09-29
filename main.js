@@ -570,7 +570,6 @@ class Carrito{
             e.preventDefault();
             this.vaciar();
             this.guardarEnStorage();
-            this.mostrarEnDOM();
             Swal.fire({
                 text: 'Pago procesado con éxito',
                 icon: 'success',
