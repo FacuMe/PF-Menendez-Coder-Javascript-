@@ -442,7 +442,7 @@ class Carrito{
     }
 
     actualizarEnvioBonificado(){
-        if(this.calcularTotalProductos() > this.costoEnvioBonificado){
+        if(this.calcularTotalProductos() >= this.costoEnvioBonificado){
             return "¡Envío Bonificado!";
         }
         else{
@@ -514,7 +514,7 @@ class Carrito{
 
     calcularTotal(){
         let total = this.calcularTotalProductos();
-        if(total <= 15000){
+        if(total < this.costoEnvioBonificado){
             total += this.costoEnvio;
         }
         if (this.envioExpress) {
