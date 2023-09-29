@@ -380,11 +380,13 @@ class Carrito{
     }
 
     calcularEnvio(){
-        let codigoPostalIngresado = document.getElementById('shipping').value;
+        const codigoPostalIngresado = document.getElementById('shipping').value;
         const error = document.getElementById('postal-code-error');
+        const error2 = document.getElementById('postal-code-error-2');
 
         if(isNaN(codigoPostalIngresado) || codigoPostalIngresado < 1000 || codigoPostalIngresado > 2000){
             error.style.display = "block";
+            error2.style.display = "none";
         }
         else{
             error.style.display = "none";
@@ -429,7 +431,7 @@ class Carrito{
             return "¡Envío Bonificado!";
         }
         else{
-            return this.costoEnvio;
+            return "$" + this.costoEnvio;
         }
     }
 
@@ -442,6 +444,7 @@ class Carrito{
                                                     <button id="calcular-envio-btn" class="btn shipping-btn ms-3 col-4">Calcular envío</button>
                                                 </div>
                                                 <p id="postal-code-error" class="col-7 mb-2 postal-code-error">Introduce un código postal válido (1000 a 2000) para calcular, sólo Buenos Aires y C.A.B.A.</p>
+                                                <p id="postal-code-error-2" class="mb-2 postal-code-error">Introduce un código postal para proceder con la compra.</p>
                                             </div>
                                             <div id="subtotal-envio-carrito-container" class="cart-subtotal d-flex justify-content-between align-items-center pe-5 pt-2mt-2">
                                                 <h6>Costo de envío: </h6>
@@ -475,6 +478,19 @@ class Carrito{
         });
     }
 
+    verificarEnvioDisponible(){
+        const error = document.getElementById('postal-code-error-2');
+        var btnFinalizar = document.getElementById("finalizar-btn");
+        if(!this.codigoPostal){
+            error.style.display = "block";
+            btnFinalizar.setAttribute("disabled", "disabled");
+        } 
+        else{
+            error.style.display = "none";
+            btnFinalizar.removeAttribute("disabled");
+        }
+    }
+
     calcularTotal(){
         let total = this.calcularTotalProductos();
         if(total <= 15000){
@@ -495,7 +511,7 @@ class Carrito{
             </div>
             <div class="d-flex justify-content-between pe-3">
                 <div>
-                    <button type="button" class="btn btn-dark cart-btn-final" data-bs-toggle="modal" data-bs-target="#finalizarCompra">Finalizar compra</button>
+                    <button id="finalizar-btn" type="button" class="btn btn-dark cart-btn-final" data-bs-toggle="modal" data-bs-target="#finalizarCompra">Finalizar compra</button>
                 </div>
                 <div>
                     <button type="button" id="empty-cart-btn" class="btn btn-light cart-btn-empty">Vaciar carrito</button>
@@ -573,6 +589,7 @@ class Carrito{
             this.cargarTotalFinalizarYVaciar();
         }
         this.cargarContadorProductos();
+        this.verificarEnvioDisponible();
     }
 
 }
