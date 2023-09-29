@@ -249,6 +249,7 @@ class Carrito{
         this.costoEnvio = 0;
         this.envioExpress = this.envioExpress;
         this.costoEnvioExpress = 1500;
+        this.costoEnvioBonificado = 15000;
     }
 
     agregar(productoAlCarrito){
@@ -426,8 +427,22 @@ class Carrito{
     }
 
     calcularEnvioBonificado(){
-        let subtotalEnvio = document.getElementById('subtotal-envio-carrito');
-        if(this.calcularTotalProductos() > 15000){
+        if(this.calcularTotalProductos() < this.costoEnvioBonificado){
+            return `Faltan $${this.costoEnvioBonificado - this.calcularTotalProductos()} para obtener envío bonificado.`;
+        }
+        else{
+            return "¡Envío bonificado!";
+        }
+    }
+
+    actualizarBarraDeProgreso(){
+        let barraDeProgreso = document.getElementById('progress');
+        let anchoBarra = (this.calcularTotalProductos() / this.costoEnvioBonificado) * 100;
+        barraDeProgreso.style.width = `${Math.min(anchoBarra, 100)}%`;
+    }
+
+    actualizarEnvioBonificado(){
+        if(this.calcularTotalProductos() > this.costoEnvioBonificado){
             return "¡Envío Bonificado!";
         }
         else{
@@ -437,7 +452,13 @@ class Carrito{
 
     cargarEnvio(){
         const envioCarritoContainer = document.getElementById("envio-carrito-container");
-        envioCarritoContainer.innerHTML =   `<div id="envio-normal-carrito-container">
+        envioCarritoContainer.innerHTML =   `<div class="d-flex flex-column">
+                                                <div id="progress" class="progress">
+                                                    <div class="progress-bar"></div>
+                                                </div>
+                                                <p id=""envio-bonificado" class="align-self-center envio-bonificado">${this.calcularEnvioBonificado()}</p>
+                                            </div>
+                                            <div id="envio-normal-carrito-container">
                                                 <div class="cart-shipping d-flex justify-content-start align-items-center pe-5 pt-4 pb-2 mt-2 mb-1">
                                                     <i class="fa fa-truck col-1" aria-hidden="true"></i>
                                                     <input type="text" id="shipping" class="form-control col-2" placeholder="Código Postal" maxlength="4" pattern="[0-9]" autocomplete="off">
@@ -448,7 +469,7 @@ class Carrito{
                                             </div>
                                             <div id="subtotal-envio-carrito-container" class="cart-subtotal d-flex justify-content-between align-items-center pe-5 pt-2mt-2">
                                                 <h6>Costo de envío: </h6>
-                                                <p id="subtotal-envio-carrito">${this.calcularEnvioBonificado()}</p>
+                                                <p id="subtotal-envio-carrito">${this.actualizarEnvioBonificado()}</p>
                                             </div>
                                             <p class="col-4 ms-1 postal-code">C.P.: ${this.codigoPostal}</p>
                                             <div id="envio-express-carrito-container" class="cart-express-shipping d-flex justify-content-between align-items-center pe-5 pt-2 pb-2 mt-2 mb-1">
@@ -462,8 +483,8 @@ class Carrito{
                                                 </div>
                                             </div>`;
 
-        // document.getElementById('shipping').value = this.codigoPostal;
         document.getElementById('envio-express').checked = this.envioExpress;
+        this.actualizarBarraDeProgreso();
 
         const calcularEnvioBtn = document.getElementById("calcular-envio-btn");
         calcularEnvioBtn.addEventListener("click", () =>{

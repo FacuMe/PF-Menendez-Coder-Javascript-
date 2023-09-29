@@ -318,6 +318,30 @@ ul {
   color: #9a9a9a;
 }
 
+.progress {
+  height: 6px;
+  overflow: visible;
+  margin-bottom: 10px;
+  background: #f48552;
+}
+
+.progress-bar {
+  animation-name: progressBar;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0%;
+  }
+}
+
+.envio-bonificado {
+  font-size: 12px;
+  color: #f48552;
+}
+
 .cart-shipping, .cart-express-shipping, .shipping-btn {
   font-size: 13px;
   font-weight: 600;
