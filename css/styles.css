@@ -344,7 +344,7 @@ ul {
   background: #f48552;
   animation-name: progressBar;
   animation-iteration-count: 1;
-  animation-duration: 1.5s;
+  animation-duration: 0.8s;
 }
 
 @keyframes progressBar {
@@ -356,6 +356,7 @@ ul {
 .envio-bonificado {
   font-size: 12px;
   color: #f48552;
+  font-weight: 600;
 }
 
 .cart-shipping, .cart-express-shipping, .shipping-btn {
