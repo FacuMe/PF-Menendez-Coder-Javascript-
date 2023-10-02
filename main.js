@@ -140,6 +140,37 @@ class ProductoController{
         return this.listaProductos.find(producto => producto.id == id);
     }
 
+    ordenarProductos(orden){
+        if(orden === "nombre-AZ"){
+            return this.listaFiltrada.sort((a, b) => {
+                if(a.nombre > b.nombre){
+                    return 1;
+                }
+                if(a.nombre < b.nombre){
+                    return -1;
+                }
+                return 0;
+            });
+        }
+        else if(orden === "nombre-ZA"){
+            return this.listaFiltrada.sort((a, b) => {
+                if(a.nombre > b.nombre){
+                    return -1;
+                }
+                if(a.nombre < b.nombre){
+                    return 1;
+                }
+                return 0;
+            });
+        }
+        else if(orden === "precio-ascendente"){
+            return this.listaFiltrada.sort((a, b) => a.precio - b.precio);
+        }
+        else if(orden === "precio-descendente"){
+            return this.listaFiltrada.sort((a, b) => b.precio - a.precio);
+        }
+    }
+
     filtrarPorNombre(nombre){
         return this.listaFiltrada.filter(producto =>
             producto.nombre.toLowerCase().includes(nombre.toLowerCase())
@@ -165,11 +196,13 @@ class ProductoController{
     }
 
     aplicarFiltros(){
-        this.listaFiltrada = this.listaProductos;
+        this.listaFiltrada = [...this.listaProductos];
         const nombre = document.getElementById("filtro-nombre").value;
         const tipo = document.getElementById("filtro-tipo").value;
         const min = document.getElementById("filtro-precio-min").value;
         const max = document.getElementById("filtro-precio-max").value;
+        const orden = document.getElementById("ordenar-productos").value;
+        const limpiarFiltrosBtn = document.getElementById("limpiar-filtros");
 
         if (nombre) {
             this.listaFiltrada = this.filtrarPorNombre(nombre);
@@ -180,16 +213,29 @@ class ProductoController{
         if (min || max) {
             this.listaFiltrada = this.filtrarPorPrecio(min, max);
         }
+        if(orden){
+            this.listaFiltrada = this.ordenarProductos(orden);
+        }
+
+        if (nombre || tipo || min || max || orden){
+            limpiarFiltrosBtn.classList.add("btn-danger");
+        }
+        else{
+            limpiarFiltrosBtn.classList.remove("btn-danger");
+        }
+
         this.cargarProductos();
     }
 
     limpiarFiltros() {
-        this.listaFiltrada = this.listaProductos;
-        this.cargarProductos();
         document.getElementById("filtro-nombre").value = "";
         document.getElementById("filtro-tipo").value = "";
         document.getElementById("filtro-precio-min").value = "";
         document.getElementById("filtro-precio-max").value = "";
+        document.getElementById("ordenar-productos").value = "";
+        document.getElementById("limpiar-filtros").classList.remove("btn-danger");
+        this.listaFiltrada = this.listaProductos;
+        this.cargarProductos();
     }
 
     cargarBotonesFiltro(){
@@ -343,6 +389,21 @@ class Carrito{
                 this.eliminarProducto(producto.id);
                 this.guardarEnStorage();
                 this.mostrarEnDOM();
+                Toastify({
+                    text: "Producto eliminado",
+                    duration: 1600,
+                    newWindow: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    style: {
+                        background: "#ab2143",
+                        color: "white",
+                        fontSize: "12px",
+                        fontWeight: "600",
+                        boxShadow: "0 0 1rem #8b8b8b"
+                    },
+                  }).showToast();
             }, 1200);
             btn_dciu.style.visibility = "visible";
         });
@@ -596,6 +657,8 @@ class Carrito{
         envioCarritoContainer.innerHTML = "";
         totalCarritoContainer.innerHTML = "";
 
+        this.cargarContadorProductos();
+
         if (this.estaVacio()){
             productosCarritoContainer.innerHTML = `
             <div class="empty-cart pt-4">
@@ -607,19 +670,111 @@ class Carrito{
             this.cargarSubtotalProductos();
             this.cargarEnvio();
             this.cargarTotalFinalizarYVaciar();
+            this.verificarEnvioDisponible();
         }
-        this.cargarContadorProductos();
-        this.verificarEnvioDisponible();
     }
 
 }
 
+//Carga de degustaciones
+
+class Degustacion{
+    constructor(id, nombre, fecha, hora, descripcion, img){
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.descripcion = descripcion;
+        this.img = img;
+    }
+
+    formatearFecha(){
+        const dt = luxon.DateTime.fromISO(this.fecha);
+        return dt.toLocaleString(luxon.DateTime.DATE_SHORT);
+    }
+
+    descripcionDegustacion(){
+        const fechaFormateada = this.formatearFecha();
+        return `
+        <div class="mb-3" data-aos="fade-up" data-aos-duration="2500" data-aos-once="true">
+            <a href="https://www.whatsapp.com">
+                <div class="tasting-cards">
+                    <div class="tasting-card-top-items d-flex justify-content-between">
+                        <div class="col-xl-8 pt-2">
+                            <h5>${this.nombre} - Wine Tasting</h5>
+                            <p>
+                                <small class="text-muted">${fechaFormateada} - ${this.hora}hs.</small>
+                            </p>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                            <div class="align-self-center">
+                                <img class="tasting-card-pic img-fluid" src="${this.img}" alt="foto de vinos">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-3" style="text-align: justify;">
+                        <small>${this.descripcion}</small>
+                    </p>
+                    <p class="mt-2"><small>¡Reservas al Whatsapp!</small></p>
+                </div>
+            </a>
+        </div>`;
+    }
+}
+
+class DegustacionController{
+    constructor(){
+        this.listaDegustacionesCompleta = [];
+        this.listaDegustacionesProximas = [];
+    }
+
+    agregar(degustacion){
+        if (degustacion instanceof Degustacion) {
+            this.listaDegustacionesCompleta.push(degustacion);
+        }
+    }
+
+    cargarDatos(){
+        fetch('tastings.json')
+            .then(response => response.json())
+            .then(response => {
+                response.forEach(degustacion => {
+                    let nuevaDegustacion = new Degustacion(...Object.values(degustacion));
+                    this.agregar(nuevaDegustacion);
+                });
+                this.listaDegustacionesCompleta.forEach(degustacion => {
+                    const dt = luxon.DateTime.fromISO(`${degustacion.fecha}T${degustacion.hora}`);
+                    const hoy = luxon.DateTime.now();
+                    dt >= hoy && this.listaDegustacionesProximas.push(degustacion);
+                });
+                this.mostrarEnDOM();
+            })
+        .catch(error => console.error('Error al cargar degustaciones', error));
+    }    
+
+    mostrarEnDOM(){
+        const degustacionesContainer = document.getElementById("degustaciones-container");
+        degustacionesContainer.innerHTML = "";
+
+        if(this.listaDegustacionesProximas.length === 0){
+            degustacionesContainer.innerHTML = '<div class="d-flex justify-content-center w-100 pt-4"><h4 class="filter-error p-3">No tenemos por el momento próximas degustaciones</h4></div>';
+        }
+        else{
+            this.listaDegustacionesProximas.forEach( degustacion => {
+                degustacionesContainer.innerHTML += degustacion.descripcionDegustacion();
+            });
+        }
+    }
+}
+
 const controladorP = new ProductoController();
 const carrito = new Carrito();
+const controladorD = new DegustacionController();
 window.addEventListener('load', () => {
     pageScrolled();
     paymentCard();
     controladorP.cargarDatos();
     carrito.recuperarStorage();
     carrito.mostrarEnDOM();
+    controladorD.cargarDatos();
 });

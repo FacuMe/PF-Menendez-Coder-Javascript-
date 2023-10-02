@@ -1,0 +1,26 @@
+[
+    {
+      "id":1,
+      "nombre": "Durigutti",
+      "fecha": "2023-11-18",
+      "hora": "21:30",
+      "descripcion": "Maravillate con una gama de aromas y sabores que solo los vinos Durigutti pueden ofrecer. En la degustación probaremos: Malbec Reserva, Cabernet Sauvignon Gran Reserva, Torrontés, y Blend de Tintas.",
+      "img": "./img/wineimage2.png"
+    },
+    {
+      "id":2,
+      "nombre": "El Enemigo",
+      "fecha": "2023-11-30",
+      "hora": "21:30",
+      "descripcion": "Sumérgete en un mundo de sabor con nuestra emocionante degustación de vinos de Bodega El Enemigo. En la degustación probaremos: Malbec, Cabernet Franc, Chardonnay, Gran Enemigo.",
+      "img": "./img/degustacion.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Ruca Malen",
+      "fecha": "2023-09-30",
+      "hora": "22:00",
+      "descripcion": "Únete a nosotros para una degustación única de vinos de Bodega Ruca Malen. Descubre la excelencia en cada copa con sus vinos: Malbec Premium, Cabernet Sauvignon Reserva, Chardonnay Especial.",
+      "img": "./img/degustacion.jpg"
+    }
+]
